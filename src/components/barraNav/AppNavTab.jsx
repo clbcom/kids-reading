@@ -11,7 +11,10 @@ const AppNavTab = ({ to, icon, children }) => {
   return (
     <Link underlayColor={Azul.tema3} style={styles.link_container} to={to}>
       <View style={[styles.container, activo && styles.activo]}>
-        <IconOutline name={icon} style={styles.icon} />
+        <IconOutline
+          name={icon}
+          style={[styles.icon, activo && styles.icon__activo]}
+        />
         {activo && <Text style={styles.text}>{children}</Text>}
       </View>
     </Link>
@@ -33,6 +36,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 28,
+    color: Azul.tema6,
+  },
+  icon__activo: {
     color: Amarillo.tema3,
   },
   text: {

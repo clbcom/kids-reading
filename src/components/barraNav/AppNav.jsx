@@ -7,7 +7,7 @@ const AppNav = () => {
       <AppNavTab to="/" icon="home">
         Inicio
       </AppNavTab>
-      <AppNavTab to="/about" icon="mic">
+      <AppNavTab to="/microfono" icon="mic">
         Microfono
       </AppNavTab>
       <AppNavTab to="/configuracion" icon="settings">
