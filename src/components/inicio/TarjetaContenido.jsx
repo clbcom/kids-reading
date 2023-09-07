@@ -2,9 +2,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Blanco, Azul, Amarillo } from "../../colors";
 import { useState } from "react";
 
-const TarjetaContenido = ({ titulo, descripcion }) => {
-  const [vistaPrevia] = useState(descripcion.slice(0, 80) + " ...");
-  const [numPalabras] = useState(descripcion.split(" ").length);
+const TarjetaContenido = ({ titulo, lectura }) => {
+  const [vistaPrevia] = useState(lectura.slice(0, 80) + " ...");
+  const [numPalabras] = useState(lectura.split(" ").length);
   const [mostrarTodo, setMostrarTodo] = useState(false);
   return (
     <View style={styles.tarjeta__contenido}>
@@ -13,7 +13,7 @@ const TarjetaContenido = ({ titulo, descripcion }) => {
       </View>
       <View>
         <Text style={styles.descripcion__texto}>
-          {mostrarTodo ? descripcion : vistaPrevia}
+          {mostrarTodo ? lectura : vistaPrevia}
         </Text>
       </View>
       <View style={styles.tarjeta__informacion}>

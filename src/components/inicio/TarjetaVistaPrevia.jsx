@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import TarjetaAcciones from "./TarjetaAcciones";
 import TarjetaContenido from "./TarjetaContenido";
 
-const TarjetaVistaPrevia = ({ key, titulo, descripcion, ref } = props) => {
+const TarjetaVistaPrevia = ({ key, titulo, lectura, ref } = props) => {
   const pressEditar = () => {
     console.log("editar");
   };
@@ -16,14 +16,14 @@ const TarjetaVistaPrevia = ({ key, titulo, descripcion, ref } = props) => {
       swipeKey={key}
       leftOpenValue={75}
       stopLeftSwipe={80}
-      stopRightSwipe={-80}
       rightOpenValue={-75}
+      stopRightSwipe={-80}
     >
       <TarjetaAcciones
         onPressEditar={pressEditar}
         onPressEliminar={pressEliminar}
       />
-      <TarjetaContenido titulo={titulo} descripcion={descripcion} />
+      <TarjetaContenido titulo={titulo} lectura={lectura} />
     </SwipeRow>
   );
 };

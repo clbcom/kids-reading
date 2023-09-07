@@ -4,7 +4,7 @@ import { Link } from "react-router-native";
 import { useLocation } from "react-router-native";
 import IconOutline from "../icons/IconOutline";
 
-const AppNavTab = ({ to, icon, children }) => {
+const AppNavTab = ({ to, icon }) => {
   const location = useLocation();
 
   const activo = location.pathname === to;

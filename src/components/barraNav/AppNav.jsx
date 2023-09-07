@@ -4,15 +4,9 @@ import AppNavTab from "./AppNavTab";
 const AppNav = () => {
   return (
     <View style={styles.container}>
-      <AppNavTab to="/" icon="home">
-        Inicio
-      </AppNavTab>
-      <AppNavTab to="/microfono" icon="mic">
-        Microfono
-      </AppNavTab>
-      <AppNavTab to="/configuracion" icon="settings">
-        Configuracion
-      </AppNavTab>
+      <AppNavTab to="/" icon="home" />
+      <AppNavTab to="/microfono" icon="mic" />
+      <AppNavTab to="/configuracion" icon="settings" />
     </View>
   );
 };

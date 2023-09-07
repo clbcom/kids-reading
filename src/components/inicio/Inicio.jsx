@@ -1,49 +1,47 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { SwipeListView } from "react-native-swipe-list-view";
+
 import { Blanco } from "../../colors";
 import BotonAdicionar from "./BotonAdicionar";
 import TarjetaVistaPrevia from "./TarjetaVistaPrevia";
-import { SwipeListView, SwipeRow } from "react-native-swipe-list-view";
 import { tarjetas } from "../../datos/datosTarjeta";
-
-const Deslizable = ({ data }) => {
-  return (
-    <SwipeListView
-      data={data}
-      renderItem={({ item }) => (
-        <SwipeRow
-          style={{
-            padding: 10,
-            margin: 10,
-            elevation: 5,
-            backgroundColor: Blanco.tema1,
-          }}
-        >
-          <View>
-            <Text>hidden</Text>
-          </View>
-          <View>
-            <Text>show</Text>
-          </View>
-        </SwipeRow>
-      )}
-    />
-  );
-};
+import { useState, useRef } from "react";
+import InputModalAgregarLectura from "./InputModalAgregarLectura";
 
 const Inicio = () => {
+  const refModalAgregarLectura = useRef(null);
+  const [tarjetasJson, setTarjetasJson] = useState(tarjetas);
+  const handleOnPressAgregar = () => {
+    refModalAgregarLectura.current.open();
+  };
+
+  const guardarNuevaLectura = (titulo, lectura) => {
+    const nuevo = {
+      id: tarjetasJson.length + 1,
+      titulo,
+      lectura,
+    };
+
+    setTarjetasJson((prev) => [nuevo, ...prev]);
+  };
+
   return (
     <View style={styles.contenedor}>
       <SwipeListView
-        data={tarjetas}
+        data={tarjetasJson}
         renderItem={({ item }) => (
           <TarjetaVistaPrevia
             key={item.id}
             titulo={item.titulo}
-            descripcion={item.descripcion}
+            lectura={item.lectura}
           />
         )}
       />
-      <BotonAdicionar />
+      <BotonAdicionar onPress={handleOnPressAgregar} />
+      <InputModalAgregarLectura
+        onSave={guardarNuevaLectura}
+        reference={refModalAgregarLectura}
+      />
     </View>
   );
 };
