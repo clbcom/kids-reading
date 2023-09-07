@@ -5,3 +5,5 @@
 - [ ] Dar funcionalidad al boton de agregar una tarjeta
 
 ## prueba remota XD
+
+mas lineas de prueba para probar git pull
