@@ -1,6 +1,7 @@
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import IconOutline from "../icons/IconOutline";
 import { Blanco, Alertas } from "../../colors";
+
 const TarjetaAcciones = ({ onPressEditar, onPressEliminar }) => {
   return (
     <View style={styles.tarjeta__acciones}>

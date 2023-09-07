@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Amarillo, Azul } from "../../colors";
 import { Link } from "react-router-native";
 import { useLocation } from "react-router-native";
@@ -15,7 +15,6 @@ const AppNavTab = ({ to, icon, children }) => {
           name={icon}
           style={[styles.icon, activo && styles.icon__activo]}
         />
-        {activo && <Text style={styles.text}>{children}</Text>}
       </View>
     </Link>
   );
@@ -39,11 +38,8 @@ const styles = StyleSheet.create({
     color: Azul.tema6,
   },
   icon__activo: {
-    color: Amarillo.tema3,
-  },
-  text: {
-    color: Amarillo.tema3,
-    fontSize: 18,
+    color: Amarillo.tema2,
+    fontWeight: "bold",
   },
 });
 export default AppNavTab;
