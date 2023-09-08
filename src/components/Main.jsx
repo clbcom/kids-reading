@@ -1,22 +1,22 @@
 import React from "react";
 import Constants from "expo-constants";
-import { View, Text, ImageBackground, Image } from "react-native";
+import { Text } from "react-native";
 import { Route, Routes } from "react-router-native";
 
 import AppNav from "./barraNav/AppNav";
 import Inicio from "./inicio/Inicio";
 import ViewBackgroundImage from "./backgrounds/ViewBackgroundImage";
+import { Fondos } from "../constantes";
 const Main = () => {
   return (
     <ViewBackgroundImage
       style={{
         flex: 1,
         marginTop: Constants.statusBarHeight,
-        backgroundColor: "transparent",
         alignItems: "center",
         justifyContent: "space-between",
       }}
-      source={require("./../../assets/fondos/fondo-blanco.jpg")}
+      source={Fondos.blanco}
     >
       <Routes>
         <Route path="/" exact element={<Inicio />} />

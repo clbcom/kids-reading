@@ -8,9 +8,8 @@ import {
 } from "react-native";
 import { forwardRef, useState } from "react";
 import InputConEtiqueta from "../inputs/InputConEtiqueta";
-import { Alertas, Azul, Blanco } from "../../colors";
-import { FontSizes, Fuentes } from "../../fuentes";
 import ViewBackgroundImage from "../backgrounds/ViewBackgroundImage";
+import { Colores, Fondos, FuentesTexto, Tema } from "../../constantes";
 
 const InputModalAgregarLectura = ({ reference, onSave } = props) => {
   const [titulo, setTitulo] = useState("");
@@ -31,11 +30,9 @@ const InputModalAgregarLectura = ({ reference, onSave } = props) => {
   const handleOnPressGuardar = () => {
     if (titulo.length === 0) return;
     if (lectura.length === 0) return;
-
-    onSave(titulo, lectura);
+    onSave(titulo.trim(), lectura.trim());
     limpiarInputs();
     reference.current.close();
-    console.log("Guardado: " + titulo);
   };
 
   return (
@@ -48,19 +45,21 @@ const InputModalAgregarLectura = ({ reference, onSave } = props) => {
       customStyles={customStylesModal}
     >
       <ScrollView style={styles.contenedor}>
-        <ViewBackgroundImage
-          source={require("./../../../assets/fondos/fondo-estrellas.jpg")}
-        >
+        <ViewBackgroundImage source={Fondos.estrellas}>
           <View style={styles.contenedor__inputs}>
-            <InputConEtiqueta onChangeText={handleOnChangeTitulo}>
+            <InputConEtiqueta
+              value={titulo}
+              onChangeText={handleOnChangeTitulo}
+            >
               Titulo
             </InputConEtiqueta>
             <InputConEtiqueta
+              value={lectura}
               onChangeText={handleOnChangeLectura}
               textarea
               editable
               multiline
-              numberOfLines={6}
+              numberOfLines={5}
             >
               Lectura
             </InputConEtiqueta>
@@ -91,32 +90,32 @@ const styles = StyleSheet.create({
   contenedor__botones: {
     flexDirection: "row",
     justifyContent: "space-around",
-    padding: 10,
+    padding: Tema.padding,
   },
   boton: {
     width: "100%",
-    borderRadius: 25,
-    padding: 10,
-    backgroundColor: Azul.primario,
     elevation: 5,
+    borderRadius: Tema.borderRadius,
+    padding: Tema.padding,
+    backgroundColor: Colores.primario,
   },
   texto__boton: {
-    fontFamily: Fuentes.actual,
+    ...FuentesTexto.titulo,
     textAlign: "center",
-    fontSize: FontSizes.large,
-    color: Blanco.primario,
+    color: Colores.blanco,
   },
 });
 
 const customStylesModal = StyleSheet.create({
   container: {
-    height: "65%",
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
+    height: "60%",
+    borderTopStartRadius: Tema.borderRadius,
+    borderTopEndRadius: Tema.borderRadius,
   },
   draggableIcon: {
     width: "35%",
     height: 10,
+    elevation: 5,
   },
 });
 

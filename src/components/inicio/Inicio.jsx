@@ -1,12 +1,12 @@
-import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 
-import { Blanco } from "../../colors";
 import BotonAdicionar from "./BotonAdicionar";
 import TarjetaVistaPrevia from "./TarjetaVistaPrevia";
 import { tarjetas } from "../../datos/datosTarjeta";
 import { useState, useRef } from "react";
 import InputModalAgregarLectura from "./InputModalAgregarLectura";
+import { Colores } from "../../constantes";
 
 const Inicio = () => {
   const refModalAgregarLectura = useRef(null);
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
     width: "100%",
-    backgroundColor: "transparent",
+    backgroundColor: Colores.transparente,
   },
 });
 

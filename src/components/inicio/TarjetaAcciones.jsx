@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import IconOutline from "../icons/IconOutline";
-import { Blanco, Alertas } from "../../colors";
+import { Colores, Tema } from "../../constantes";
 
 const TarjetaAcciones = ({ onPressEditar, onPressEliminar }) => {
   return (
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   tarjeta__acciones: {
     width: "100%",
     height: "100%",
-    backgroundColor: "transparent",
+    backgroundColor: Colores.transparente,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -27,23 +27,22 @@ const styles = StyleSheet.create({
   tarjeta__boton: {
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: Tema.borderRadius,
     overflow: "hidden",
     elevation: 5,
-    backgroundColor: Blanco.primario,
-    marginHorizontal: 20,
+    marginHorizontal: Tema.marginLarge,
   },
   tarjeta__boton__eliminar: {
-    backgroundColor: Alertas.danger,
-    color: Blanco.primario,
-    padding: 10,
-    fontSize: 30,
+    backgroundColor: Colores.danger,
+    color: Colores.blanco,
+    padding: Tema.padding,
+    fontSize: Tema.h2,
   },
   tarjeta__boton__editar: {
-    padding: 10,
-    backgroundColor: Alertas.success,
-    color: Blanco.primario,
-    fontSize: 30,
+    padding: Tema.padding,
+    backgroundColor: Colores.success,
+    color: Colores.blanco,
+    fontSize: Tema.h2,
   },
 });
 export default TarjetaAcciones;

@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Blanco, Azul, Amarillo } from "../../colors";
 import { useState } from "react";
-import { FontSizes, Fuentes } from "../../fuentes";
+import { Colores, FuentesTexto, Tema } from "../../constantes";
 
 const TarjetaContenido = ({ titulo, lectura }) => {
   const [vistaPrevia] = useState(lectura.slice(0, 80) + " ...");
@@ -45,49 +44,45 @@ const TarjetaContenido = ({ titulo, lectura }) => {
 
 const styles = StyleSheet.create({
   tarjeta__contenido: {
-    margin: 10,
+    flex: 1,
     overflow: "hidden",
     elevation: 8,
-    backgroundColor: Blanco.primario,
-    borderRadius: 10,
-    flex: 1,
+    margin: Tema.margin,
+    backgroundColor: Colores.blanco,
+    borderRadius: Tema.borderRadius,
   },
   titulo__contenedor: {
-    backgroundColor: Azul.primario,
+    backgroundColor: Colores.primario,
   },
   titulo_texto: {
+    ...FuentesTexto.titulo,
     textAlign: "center",
-    fontFamily: Fuentes.actual,
-    padding: 10,
-    color: Blanco.primario,
-    fontSize: FontSizes.medium,
+    padding: Tema.padding,
+    color: Colores.blanco,
   },
   descripcion__texto: {
-    padding: 10,
-    fontFamily: Fuentes.actual,
-    fontSize: FontSizes.small,
+    ...FuentesTexto.parrafo,
+    padding: Tema.padding,
     textAlign: "justify",
     alignContent: "center",
   },
   tarjeta__informacion: {
     flexDirection: "row",
     justifyContent: "space-around",
-    borderTopColor: Blanco.secundario,
+    borderTopColor: Colores.primario,
     borderStyle: "solid",
     borderTopWidth: 1,
   },
   tarjeta__informacion__boton_texto: {
     flex: 1,
     alignItems: "center",
-    padding: 10,
+    padding: Tema.padding,
   },
   tarjeta__informacion__texto: {
-    fontFamily: Fuentes.actual,
-    fontSize: FontSizes.small,
+    ...FuentesTexto.parrafoSmall,
   },
   tarjeta__informacion__vermas: {
-    // color: Azul.secundario,
-    color: "#2a91ba",
+    color: Colores.primario,
   },
 });
 

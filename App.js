@@ -1,12 +1,11 @@
 import Main from "./src/components/Main";
 import { NativeRouter } from "react-router-native";
 import { useFonts } from "expo-font";
-import { ImageBackground, Text } from "react-native";
+import { Text } from "react-native";
+import { Fuentes } from "./src/constantes";
 function App() {
   const [loaded] = useFonts({
-    Chewy: require("./assets/fuentes/Chewy.ttf"),
-    FingerPaint: require("./assets/fuentes/FingerPaint.ttf"),
-    Schoolbell: require("./assets/fuentes/Schoolbell.ttf"),
+    Schoolbell: Fuentes.Schoolbell,
   });
   return (
     <NativeRouter>

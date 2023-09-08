@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
-import { Azul } from "./../../colors";
 import AppNavTab from "./AppNavTab";
+import { Colores, Tema } from "../../constantes";
 const AppNav = () => {
   return (
     <View style={styles.container}>
@@ -13,12 +13,14 @@ const AppNav = () => {
 
 const styles = StyleSheet.create({
   container: {
+    borderTopStartRadius: Tema.borderRadius,
+    borderTopEndRadius: Tema.borderRadius,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     width: "100%",
     height: 60,
-    backgroundColor: Azul.tercero,
+    backgroundColor: Colores.azulMedio,
     overflow: "hidden",
   },
 });

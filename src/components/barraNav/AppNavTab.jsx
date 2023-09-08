@@ -1,15 +1,19 @@
 import { View, StyleSheet } from "react-native";
-import { Amarillo, Azul } from "../../colors";
 import { Link } from "react-router-native";
 import { useLocation } from "react-router-native";
 import IconOutline from "../icons/IconOutline";
+import { Colores } from "../../constantes";
 
 const AppNavTab = ({ to, icon }) => {
   const location = useLocation();
 
   const activo = location.pathname === to;
   return (
-    <Link underlayColor={Azul.tema3} style={styles.link_container} to={to}>
+    <Link
+      underlayColor={Colores.azulClaro}
+      style={styles.link_container}
+      to={to}
+    >
       <View style={[styles.container, activo && styles.activo]}>
         <IconOutline
           name={icon}
@@ -31,15 +35,14 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   activo: {
-    backgroundColor: Azul.secundario,
+    backgroundColor: Colores.primario,
   },
   icon: {
     fontSize: 28,
-    color: Azul.primario,
+    color: Colores.azulClaro,
   },
   icon__activo: {
-    color: Amarillo.primario,
-    fontWeight: "bold",
+    color: Colores.secundario,
   },
 });
 export default AppNavTab;
