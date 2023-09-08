@@ -19,7 +19,11 @@ const BotonAdicionar = ({ onPress }) => {
         onPressOut={() => setPresionado(false)}
         style={styles.icon__adicionar}
       >
-        <IconOutline size={30} style={{ color: Amarillo.tema3 }} name="add" />
+        <IconOutline
+          size={30}
+          style={{ color: Amarillo.primario }}
+          name="add"
+        />
       </TouchableOpacity>
     </View>
   );
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 60,
     height: 60,
-    backgroundColor: Blanco.tema1,
+    backgroundColor: Blanco.primario,
     borderRadius: 15,
     elevation: 5,
   },
@@ -45,12 +49,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -50,
     right: -13,
-    backgroundColor: Negro.tema1,
+    backgroundColor: Negro.primario,
     padding: 5,
     width: "150%",
     textAlign: "center",
     borderRadius: 15,
-    color: Negro.tema5,
+    color: Blanco.primario,
     elevation: 5,
   },
   show__texto__hover: {

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     width: "100%",
     height: 60,
-    backgroundColor: Azul.tema1,
+    backgroundColor: Azul.tercero,
     overflow: "hidden",
   },
 });

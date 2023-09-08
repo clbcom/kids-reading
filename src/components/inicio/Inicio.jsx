@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 
 import { Blanco } from "../../colors";
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
     width: "100%",
-    backgroundColor: Blanco.tema1,
+    backgroundColor: "transparent",
   },
 });
 

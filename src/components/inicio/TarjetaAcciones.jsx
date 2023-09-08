@@ -30,19 +30,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
     elevation: 5,
-    backgroundColor: Blanco.tema1,
+    backgroundColor: Blanco.primario,
     marginHorizontal: 20,
   },
   tarjeta__boton__eliminar: {
     backgroundColor: Alertas.danger,
-    color: Blanco.tema1,
+    color: Blanco.primario,
     padding: 10,
     fontSize: 30,
   },
   tarjeta__boton__editar: {
     padding: 10,
     backgroundColor: Alertas.success,
-    color: Blanco.tema1,
+    color: Blanco.primario,
     fontSize: 30,
   },
 });

@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   activo: {
-    backgroundColor: Azul.tema2,
+    backgroundColor: Azul.secundario,
   },
   icon: {
     fontSize: 28,
-    color: Azul.tema6,
+    color: Azul.primario,
   },
   icon__activo: {
-    color: Amarillo.tema2,
+    color: Amarillo.primario,
     fontWeight: "bold",
   },
 });

@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Blanco, Azul, Amarillo } from "../../colors";
 import { useState } from "react";
+import { FontSizes, Fuentes } from "../../fuentes";
 
 const TarjetaContenido = ({ titulo, lectura }) => {
   const [vistaPrevia] = useState(lectura.slice(0, 80) + " ...");
@@ -17,16 +18,23 @@ const TarjetaContenido = ({ titulo, lectura }) => {
         </Text>
       </View>
       <View style={styles.tarjeta__informacion}>
-        <View style={styles.tarjeta__informacion__texto}>
-          <Text>Palabras: {numPalabras}</Text>
+        <View style={styles.tarjeta__informacion__boton_texto}>
+          <Text style={styles.tarjeta__informacion__texto}>
+            Palabras: {numPalabras}
+          </Text>
         </View>
         <TouchableOpacity
           onPress={() => {
             setMostrarTodo((prev) => !prev);
           }}
-          style={styles.tarjeta__informacion__texto}
+          style={styles.tarjeta__informacion__boton_texto}
         >
-          <Text style={styles.descripcion__texto__vermas}>
+          <Text
+            style={[
+              styles.tarjeta__informacion__texto,
+              styles.tarjeta__informacion__vermas,
+            ]}
+          >
             {mostrarTodo ? "Ver menos" : "Ver mas"}
           </Text>
         </TouchableOpacity>
@@ -40,39 +48,46 @@ const styles = StyleSheet.create({
     margin: 10,
     overflow: "hidden",
     elevation: 8,
-    backgroundColor: Blanco.tema1,
+    backgroundColor: Blanco.primario,
     borderRadius: 10,
     flex: 1,
   },
   titulo__contenedor: {
-    backgroundColor: Azul.tema1,
+    backgroundColor: Azul.primario,
   },
   titulo_texto: {
+    textAlign: "center",
+    fontFamily: Fuentes.actual,
     padding: 10,
-    color: Amarillo.tema2,
-    fontWeight: "bold",
-    fontSize: 28,
+    color: Blanco.primario,
+    fontSize: FontSizes.medium,
   },
   descripcion__texto: {
     padding: 10,
+    fontFamily: Fuentes.actual,
+    fontSize: FontSizes.small,
     textAlign: "justify",
     alignContent: "center",
-    fontSize: 20,
   },
   tarjeta__informacion: {
     flexDirection: "row",
     justifyContent: "space-around",
-    borderTopColor: Blanco.tema5,
+    borderTopColor: Blanco.secundario,
     borderStyle: "solid",
     borderTopWidth: 1,
   },
-  tarjeta__informacion__texto: {
+  tarjeta__informacion__boton_texto: {
     flex: 1,
     alignItems: "center",
     padding: 10,
   },
-  descripcion__texto__vermas: {
-    color: Azul.tema5,
+  tarjeta__informacion__texto: {
+    fontFamily: Fuentes.actual,
+    fontSize: FontSizes.small,
+  },
+  tarjeta__informacion__vermas: {
+    // color: Azul.secundario,
+    color: "#2a91ba",
   },
 });
 

@@ -1,5 +1,6 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
-import { Negro } from "../../colors";
+import { Azul, Blanco, Negro } from "../../colors";
+import { FontSizes, Fuentes } from "../../fuentes";
 
 const InputConEtiqueta = ({ textarea, children, ...otrosProps }) => {
   return (
@@ -17,19 +18,23 @@ const InputConEtiqueta = ({ textarea, children, ...otrosProps }) => {
 const styles = StyleSheet.create({
   contenedor__input: {
     padding: 10,
+    width: "90%",
   },
   titulo: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: FontSizes.medium,
+    fontFamily: Fuentes.actual,
     marginBottom: 5,
+    color: Azul.primario,
   },
   input: {
+    fontSize: FontSizes.medium,
+    fontFamily: Fuentes.actual,
     borderRadius: 10,
-    padding: 5,
+    padding: 10,
     borderStyle: "solid",
     borderWidth: 1,
-    borderColor: `${Negro.tema1}44`,
-    fontSize: 18,
+    borderColor: `${Blanco.secundario}44`,
+    backgroundColor: Blanco.primario,
   },
   input__textarea: {
     textAlignVertical: "top",
