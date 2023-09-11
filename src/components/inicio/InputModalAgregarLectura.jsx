@@ -45,7 +45,7 @@ const InputModalAgregarLectura = ({ reference, onSave } = props) => {
       customStyles={customStylesModal}
     >
       <ScrollView style={styles.contenedor}>
-        <ViewBackgroundImage source={Fondos.estrellas}>
+        <ViewBackgroundImage resizeMode="repeat" source={Fondos.estrellas}>
           <View style={styles.contenedor__inputs}>
             <InputConEtiqueta
               value={titulo}

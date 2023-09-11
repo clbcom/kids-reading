@@ -1,16 +1,23 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useState } from "react";
-import { Colores, FuentesTexto, Tema } from "../../constantes";
+import { Colores, Fondos, FuentesTexto, Tema } from "../../constantes";
+import ViewBackgroundImage from "../backgrounds/ViewBackgroundImage";
 
 const TarjetaContenido = ({ titulo, lectura }) => {
   const [vistaPrevia] = useState(lectura.slice(0, 80) + " ...");
   const [numPalabras] = useState(lectura.split(" ").length);
   const [mostrarTodo, setMostrarTodo] = useState(false);
+
   return (
     <View style={styles.tarjeta__contenido}>
-      <View style={styles.titulo__contenedor}>
+      <ViewBackgroundImage
+        resizeMode="cover"
+        opacity={0.4}
+        source={Fondos.tarjeta2}
+        style={styles.titulo__contenedor}
+      >
         <Text style={styles.titulo_texto}>{titulo}</Text>
-      </View>
+      </ViewBackgroundImage>
       <View>
         <Text style={styles.descripcion__texto}>
           {mostrarTodo ? lectura : vistaPrevia}
@@ -45,10 +52,10 @@ const TarjetaContenido = ({ titulo, lectura }) => {
 const styles = StyleSheet.create({
   tarjeta__contenido: {
     flex: 1,
+    backgroundColor: Colores.blanco,
     overflow: "hidden",
     elevation: 8,
     margin: Tema.margin,
-    backgroundColor: Colores.blanco,
     borderRadius: Tema.borderRadius,
   },
   titulo__contenedor: {

@@ -10,6 +10,7 @@ import { Fondos } from "../constantes";
 const Main = () => {
   return (
     <ViewBackgroundImage
+      resizeMode="repeat"
       style={{
         flex: 1,
         marginTop: Constants.statusBarHeight,

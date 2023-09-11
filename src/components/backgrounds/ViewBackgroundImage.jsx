@@ -1,10 +1,17 @@
 import { View, Image, StyleSheet } from "react-native";
 
-const ViewBackgroundImage = ({ source, children, ...otrasProps }) => {
+const ViewBackgroundImage = ({
+  source,
+  resizeMode,
+  opacity,
+  children,
+  ...otrasProps
+}) => {
   return (
     <View {...otrasProps}>
       <Image
-        resizeMode="repeat"
+        opacity={opacity}
+        resizeMode={resizeMode}
         style={styles.backgroundImage}
         source={source}
       />
