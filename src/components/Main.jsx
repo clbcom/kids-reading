@@ -7,6 +7,7 @@ import AppNav from "./barraNav/AppNav";
 import Inicio from "./inicio/Inicio";
 import ViewBackgroundImage from "./backgrounds/ViewBackgroundImage";
 import { Fondos } from "../constantes";
+import InicioMicrofono from "./lectura/InicioMicrofono";
 const Main = () => {
   return (
     <ViewBackgroundImage
@@ -21,7 +22,7 @@ const Main = () => {
     >
       <Routes>
         <Route path="/" exact element={<Inicio />} />
-        <Route path="/microfono" element={<Text>About</Text>} exact />
+        <Route path="/microfono" element={<InicioMicrofono />} exact />
         <Route
           path="/configuracion"
           element={<Text>Configuracion</Text>}
