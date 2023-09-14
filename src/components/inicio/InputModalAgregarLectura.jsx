@@ -1,17 +1,10 @@
-import ModalInferior from "react-native-raw-bottom-sheet";
-import {
-  View,
-  StyleSheet,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
-import { forwardRef, useState } from "react";
+import ModalInferior from "../modals/ModalInferior";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useState } from "react";
 import InputConEtiqueta from "../inputs/InputConEtiqueta";
-import ViewBackgroundImage from "../backgrounds/ViewBackgroundImage";
-import { Colores, Fondos, FuentesTexto, Tema } from "../../constantes";
+import { Colores, FuentesTexto, Tema } from "../../constantes";
 
-const InputModalAgregarLectura = ({ reference, onSave } = props) => {
+const InputModalAgregarLectura = ({ reference, onSave }) => {
   const [titulo, setTitulo] = useState("");
   const [lectura, setLectura] = useState("");
 
@@ -36,44 +29,27 @@ const InputModalAgregarLectura = ({ reference, onSave } = props) => {
   };
 
   return (
-    <ModalInferior
-      ref={reference}
-      openDuration={300}
-      animationType="fade"
-      dragFromTopOnly={true}
-      closeOnDragDown={true}
-      customStyles={customStylesModal}
-    >
-      <ScrollView style={styles.contenedor}>
-        <ViewBackgroundImage resizeMode="repeat" source={Fondos.estrellas}>
-          <View style={styles.contenedor__inputs}>
-            <InputConEtiqueta
-              value={titulo}
-              onChangeText={handleOnChangeTitulo}
-            >
-              Titulo
-            </InputConEtiqueta>
-            <InputConEtiqueta
-              value={lectura}
-              onChangeText={handleOnChangeLectura}
-              textarea
-              editable
-              multiline
-              numberOfLines={5}
-            >
-              Lectura
-            </InputConEtiqueta>
-          </View>
-          <View style={styles.contenedor__botones}>
-            <TouchableOpacity
-              onPress={handleOnPressGuardar}
-              style={styles.boton}
-            >
-              <Text style={styles.texto__boton}>Aceptar</Text>
-            </TouchableOpacity>
-          </View>
-        </ViewBackgroundImage>
-      </ScrollView>
+    <ModalInferior withScroll reference={reference}>
+      <View style={styles.contenedor__inputs}>
+        <InputConEtiqueta value={titulo} onChangeText={handleOnChangeTitulo}>
+          Titulo
+        </InputConEtiqueta>
+        <InputConEtiqueta
+          value={lectura}
+          onChangeText={handleOnChangeLectura}
+          textarea
+          editable
+          multiline
+          numberOfLines={5}
+        >
+          Lectura
+        </InputConEtiqueta>
+      </View>
+      <View style={styles.contenedor__botones}>
+        <TouchableOpacity onPress={handleOnPressGuardar} style={styles.boton}>
+          <Text style={styles.texto__boton}>Aceptar</Text>
+        </TouchableOpacity>
+      </View>
     </ModalInferior>
   );
 };
@@ -119,4 +95,4 @@ const customStylesModal = StyleSheet.create({
   },
 });
 
-export default forwardRef(InputModalAgregarLectura);
+export default InputModalAgregarLectura;

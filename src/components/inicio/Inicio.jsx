@@ -3,32 +3,32 @@ import { SwipeListView } from "react-native-swipe-list-view";
 
 import BotonAdicionar from "./BotonAdicionar";
 import TarjetaVistaPrevia from "./TarjetaVistaPrevia";
-import { tarjetas } from "../../datos/datosTarjeta";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import InputModalAgregarLectura from "./InputModalAgregarLectura";
 import { Colores } from "../../constantes";
+import { useDatos } from "../../datos/DatosContext";
 
 const Inicio = () => {
   const refModalAgregarLectura = useRef(null);
-  const [tarjetasJson, setTarjetasJson] = useState(tarjetas);
+  const [lecturas, setLecturas] = useDatos();
   const handleOnPressAgregar = () => {
     refModalAgregarLectura.current.open();
   };
 
   const guardarNuevaLectura = (titulo, lectura) => {
     const nuevo = {
-      id: tarjetasJson.length + 1,
+      id: lecturas.length + 1,
       titulo,
       lectura,
     };
 
-    setTarjetasJson((prev) => [nuevo, ...prev]);
+    setLecturas((prev) => [nuevo, ...prev]);
   };
 
   return (
     <View style={styles.contenedor}>
       <SwipeListView
-        data={tarjetasJson}
+        data={lecturas}
         renderItem={({ item }) => (
           <TarjetaVistaPrevia
             key={item.id}

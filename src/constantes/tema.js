@@ -6,6 +6,9 @@ const Tema = {
   paddingSmall: 5,
   padding: 10,
   paddingLarge: 20,
+  gapSmall: 5,
+  gap: 10,
+  gapLarge: 20,
 
   // fontSizes
   h1: 40,
@@ -14,19 +17,32 @@ const Tema = {
   normal: 25,
 };
 
+const IconoSize = {
+  small: 20,
+  normal: 30,
+  large: 45,
+  xlarge: 60,
+  xxlarge: 80,
+};
+
 const FuentesTexto = {
   titulo: {
     fontFamily: "Schoolbell",
     fontSize: Tema.h1,
   },
-  parrafo: {
-    fontFamily: "Schoolbell",
-    fontSize: Tema.normal,
-  },
+
   parrafoSmall: {
     fontFamily: "Schoolbell",
     fontSize: Tema.small,
   },
+  parrafo: {
+    fontFamily: "Schoolbell",
+    fontSize: Tema.normal,
+  },
+  parrafoLarge: {
+    fontFamily: "Schoolbell",
+    fontSize: Tema.h2,
+  },
 };
 
-export { Tema, FuentesTexto };
+export { Tema, FuentesTexto, IconoSize };

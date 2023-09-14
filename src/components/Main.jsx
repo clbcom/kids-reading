@@ -8,6 +8,7 @@ import Inicio from "./inicio/Inicio";
 import ViewBackgroundImage from "./backgrounds/ViewBackgroundImage";
 import { Fondos } from "../constantes";
 import InicioMicrofono from "./lectura/InicioMicrofono";
+import { DatosProvider } from "../datos/DatosContext";
 const Main = () => {
   return (
     <ViewBackgroundImage
@@ -20,15 +21,17 @@ const Main = () => {
       }}
       source={Fondos.blanco}
     >
-      <Routes>
-        <Route path="/" exact element={<Inicio />} />
-        <Route path="/microfono" element={<InicioMicrofono />} exact />
-        <Route
-          path="/configuracion"
-          element={<Text>Configuracion</Text>}
-          exact
-        />
-      </Routes>
+      <DatosProvider>
+        <Routes>
+          <Route path="/" element={<InicioMicrofono />} exact />
+          <Route path="/tarjetas" exact element={<Inicio />} />
+          <Route
+            path="/configuracion"
+            element={<Text>Configuracion</Text>}
+            exact
+          />
+        </Routes>
+      </DatosProvider>
       <AppNav />
     </ViewBackgroundImage>
   );

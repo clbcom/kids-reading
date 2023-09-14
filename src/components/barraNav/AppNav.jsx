@@ -4,8 +4,8 @@ import { Colores, Tema } from "../../constantes";
 const AppNav = () => {
   return (
     <View style={styles.container}>
-      <AppNavTab to="/" icon="home" />
-      <AppNavTab to="/microfono" icon="mic" />
+      <AppNavTab to="/tarjetas" icon="home" />
+      <AppNavTab to="/" icon="mic" />
       <AppNavTab to="/configuracion" icon="settings" />
     </View>
   );
