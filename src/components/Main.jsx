@@ -9,6 +9,7 @@ import ViewBackgroundImage from "./backgrounds/ViewBackgroundImage";
 import { Fondos } from "../constantes";
 import InicioMicrofono from "./lectura/InicioMicrofono";
 import { DatosProvider } from "../datos/DatosContext";
+import TextoCargando from "./carga/TextoCargando";
 const Main = () => {
   return (
     <ViewBackgroundImage
@@ -27,7 +28,7 @@ const Main = () => {
           <Route path="/tarjetas" exact element={<Inicio />} />
           <Route
             path="/configuracion"
-            element={<Text>Configuracion</Text>}
+            element={<TextoCargando mensaje="Configuraciones" />}
             exact
           />
         </Routes>

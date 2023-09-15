@@ -3,10 +3,12 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import InputConEtiqueta from "../inputs/InputConEtiqueta";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
+import { useDatos } from "../../datos/DatosContext";
 
-const InputModalAgregarLectura = ({ reference, onSave }) => {
+const InputModalAgregarLectura = ({ reference }) => {
   const [titulo, setTitulo] = useState("");
   const [lectura, setLectura] = useState("");
+  const [lecturas, setNuevaLectura] = useDatos();
 
   const handleOnChangeTitulo = (text) => {
     setTitulo(text);
@@ -23,7 +25,12 @@ const InputModalAgregarLectura = ({ reference, onSave }) => {
   const handleOnPressGuardar = () => {
     if (titulo.length === 0) return;
     if (lectura.length === 0) return;
-    onSave(titulo.trim(), lectura.trim());
+    const nuevo = {
+      id: lecturas.length + 1,
+      titulo: titulo.trim(),
+      lectura: lectura.trim(),
+    };
+    setNuevaLectura((prev) => [nuevo, ...prev]);
     limpiarInputs();
     reference.current.close();
   };
