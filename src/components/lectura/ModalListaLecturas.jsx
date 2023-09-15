@@ -2,7 +2,9 @@ import { FlatList, View, Text, TouchableOpacity } from "react-native";
 import ModalInferior from "../modals/ModalInferior";
 import { useDatos } from "../../datos/DatosContext";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
-const ModalListaLecturas = ({ reference, onSelect }) => {
+import { useLecturaActual } from "../../datos/LecturaActualContext";
+const ModalListaLecturas = function ({ reference }) {
+  const [, setLecturaActual] = useLecturaActual();
   const [lecturas] = useDatos();
   return (
     <ModalInferior reference={reference}>
@@ -18,9 +20,9 @@ const ModalListaLecturas = ({ reference, onSelect }) => {
         data={lecturas}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => {
+            onPress={function () {
               reference.current.close();
-              onSelect(item);
+              setLecturaActual(item);
             }}
             style={{
               padding: Tema.padding,

@@ -4,7 +4,7 @@ import BotonConIcono from "../botones/BotonConIcono";
 import { useRef, useState } from "react";
 import ModalListaLecturas from "./ModalListaLecturas";
 
-const ContenedorBotones = ({ onSelect, onPressMicrofono }) => {
+const ContenedorBotones = () => {
   const [estaGrabando, setEstaGrabando] = useState(false);
   const modalListaRef = useRef(null);
   const handleOnPressMicrofono = () => {
@@ -36,7 +36,7 @@ const ContenedorBotones = ({ onSelect, onPressMicrofono }) => {
         style={styles.boton}
         styleIcon={{ color: Colores.secundario }}
       />
-      <ModalListaLecturas onSelect={onSelect} reference={modalListaRef} />
+      <ModalListaLecturas reference={modalListaRef} />
     </View>
   );
 };
