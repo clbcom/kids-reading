@@ -4,8 +4,6 @@ import { Colores, Fondos, FuentesTexto, Tema } from "../../constantes";
 import ViewBackgroundImage from "../backgrounds/ViewBackgroundImage";
 
 const TarjetaContenido = ({ titulo, lectura }) => {
-  const [vistaPrevia] = useState(lectura.slice(0, 80) + " ...");
-  const [numPalabras] = useState(lectura.split(" ").length);
   const [mostrarTodo, setMostrarTodo] = useState(false);
 
   return (
@@ -18,16 +16,14 @@ const TarjetaContenido = ({ titulo, lectura }) => {
       >
         <Text style={styles.titulo_texto}>{titulo}</Text>
       </ViewBackgroundImage>
-      <View>
-        <Text style={styles.descripcion__texto}>
-          {mostrarTodo ? lectura : vistaPrevia}
-        </Text>
-      </View>
+      {mostrarTodo && (
+        <View>
+          <Text style={styles.descripcion__texto}>{lectura}</Text>
+        </View>
+      )}
       <View style={styles.tarjeta__informacion}>
         <View style={styles.tarjeta__informacion__boton_texto}>
-          <Text style={styles.tarjeta__informacion__texto}>
-            Palabras: {numPalabras}
-          </Text>
+          <Text style={styles.tarjeta__informacion__texto}>Palabras: {0}</Text>
         </View>
         <TouchableOpacity
           onPress={() => {

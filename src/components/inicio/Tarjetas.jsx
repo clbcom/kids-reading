@@ -1,23 +1,28 @@
-import { View, Text, StyleSheet } from "react-native";
-import { SwipeListView } from "react-native-swipe-list-view";
+import { View, StyleSheet, FlatList } from "react-native";
+import { useState, useEffect, useRef } from "react";
 
 import BotonAdicionar from "./BotonAdicionar";
-import TarjetaVistaPrevia from "./TarjetaVistaPrevia";
-import { useState, useEffect, useRef } from "react";
 import InputModalAgregarLectura from "./InputModalAgregarLectura";
-import { Colores } from "../../constantes";
-import { useDatos } from "../../datos/DatosContext";
 import TextoCargando from "../carga/TextoCargando";
+import { Colores } from "../../constantes";
+import { useRealmCrud } from "../../datos/RealmContext";
+import TarjetaContenido from "./TarjetaContenido";
 
-const Inicio = () => {
+const Tarjetas = () => {
   const refModalAgregarLectura = useRef(null);
   const [cargando, setCargando] = useState(true);
-  const [lecturas, setLecturas] = useDatos();
+  const [lecturas, setLecturas] = useState([]);
+  const { obtenerLecturas } = useRealmCrud();
+
   const handleOnPressAgregar = () => {
     refModalAgregarLectura.current.open();
   };
+  const handleOnAgregar = () => {
+    setLecturas(obtenerLecturas());
+  };
 
   useEffect(() => {
+    handleOnAgregar();
     setCargando(false);
   }, []);
 
@@ -26,11 +31,11 @@ const Inicio = () => {
       {cargando ? (
         <TextoCargando />
       ) : (
-        <SwipeListView
+        <FlatList
           data={lecturas}
           renderItem={({ item }) => (
-            <TarjetaVistaPrevia
-              key={item.id}
+            <TarjetaContenido
+              key={item._id}
               titulo={item.titulo}
               lectura={item.lectura}
             />
@@ -38,7 +43,10 @@ const Inicio = () => {
         />
       )}
       <BotonAdicionar onPress={handleOnPressAgregar} />
-      <InputModalAgregarLectura reference={refModalAgregarLectura} />
+      <InputModalAgregarLectura
+        onAgregar={handleOnAgregar}
+        reference={refModalAgregarLectura}
+      />
     </View>
   );
 };
@@ -51,4 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Inicio;
+export default Tarjetas;

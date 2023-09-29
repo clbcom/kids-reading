@@ -1,12 +1,15 @@
-import { createContext, useContext, useState } from "react";
-import { useDatos } from "./DatosContext";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useRealmCrud } from "./RealmContext";
 
 const LecturaActualContext = createContext();
 
 const LecturaActualProvider = ({ children }) => {
-  const [lecturas] = useDatos();
-  const [lecturaActual, setLecturaActual] = useState(lecturas[0]);
+  const { obtenerLecturas } = useRealmCrud();
+  const [lecturaActual, setLecturaActual] = useState(null);
 
+  useEffect(() => {
+    setLecturaActual(obtenerLecturas()[0]);
+  }, []);
   return (
     <LecturaActualContext.Provider value={[lecturaActual, setLecturaActual]}>
       {children}

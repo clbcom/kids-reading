@@ -3,12 +3,12 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import InputConEtiqueta from "../inputs/InputConEtiqueta";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
-import { useDatos } from "../../datos/DatosContext";
+import { useRealmCrud } from "../../datos/RealmContext";
 
-const InputModalAgregarLectura = ({ reference }) => {
+const InputModalAgregarLectura = ({ reference, onAgregar }) => {
   const [titulo, setTitulo] = useState("");
   const [lectura, setLectura] = useState("");
-  const [lecturas, setNuevaLectura] = useDatos();
+  const { agregarLectura } = useRealmCrud();
 
   const handleOnChangeTitulo = (text) => {
     setTitulo(text);
@@ -25,13 +25,10 @@ const InputModalAgregarLectura = ({ reference }) => {
   const handleOnPressGuardar = () => {
     if (titulo.length === 0) return;
     if (lectura.length === 0) return;
-    const nuevo = {
-      id: lecturas.length + 1,
-      titulo: titulo.trim(),
-      lectura: lectura.trim(),
-    };
-    setNuevaLectura((prev) => [nuevo, ...prev]);
+
+    agregarLectura(titulo.trim(), lectura.trim());
     limpiarInputs();
+    onAgregar();
     reference.current.close();
   };
 
@@ -86,19 +83,6 @@ const styles = StyleSheet.create({
     ...FuentesTexto.titulo,
     textAlign: "center",
     color: Colores.blanco,
-  },
-});
-
-const customStylesModal = StyleSheet.create({
-  container: {
-    height: "60%",
-    borderTopStartRadius: Tema.borderRadius,
-    borderTopEndRadius: Tema.borderRadius,
-  },
-  draggableIcon: {
-    width: "35%",
-    height: 10,
-    elevation: 5,
   },
 });
 

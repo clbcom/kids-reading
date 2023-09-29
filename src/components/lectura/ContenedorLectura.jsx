@@ -10,13 +10,15 @@ const ContenedorLectura = () => {
   const [numPalabras, setNumPalabras] = useState(0);
 
   useEffect(() => {
-    setNumPalabras(contadorDePalabras(lecturaActual.lectura));
+    if (lecturaActual) {
+      setNumPalabras(contadorDePalabras(lecturaActual.lectura));
+    }
   }, [lecturaActual]);
   return (
     <View style={styles.contenedor__lectura}>
       <View style={styles.contenedor__titulo}>
         <Text style={styles.contenedor__lectura__titulo}>
-          {lecturaActual.titulo}
+          {lecturaActual && lecturaActual.titulo}
         </Text>
       </View>
       <ScrollView style={styles.contenedor__lectura__texto}>
@@ -27,7 +29,7 @@ const ContenedorLectura = () => {
             },
           ]}
         >
-          {lecturaActual.lectura}
+          {lecturaActual && lecturaActual.lectura}
         </Text>
       </ScrollView>
       <View style={styles.contenedor__estadisticas}>
