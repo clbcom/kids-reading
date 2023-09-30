@@ -1,25 +1,21 @@
 import { View, StyleSheet } from "react-native";
 import { Colores, Tema, IconoSize } from "../../constantes";
 import BotonConIcono from "../botones/BotonConIcono";
-import { useRef, useState } from "react";
-import ModalListaLecturas from "./ModalListaLecturas";
+import { useState } from "react";
 
 const ContenedorBotones = () => {
   const [estaGrabando, setEstaGrabando] = useState(false);
-  const modalListaRef = useRef(null);
+
   const handleOnPressMicrofono = () => {
     setEstaGrabando((prev) => !prev);
-  };
-  const handleOnPressLista = () => {
-    modalListaRef.current.open();
   };
 
   return (
     <View style={styles.contenedor__microfono}>
+      //TODO: Eliminar este componenete de icono de lista
       <BotonConIcono
         name="list"
         size={IconoSize.large}
-        onPress={handleOnPressLista}
         style={styles.boton}
         styleIcon={{ color: Colores.secundario }}
       />
@@ -36,7 +32,6 @@ const ContenedorBotones = () => {
         style={styles.boton}
         styleIcon={{ color: Colores.secundario }}
       />
-      <ModalListaLecturas reference={modalListaRef} />
     </View>
   );
 };

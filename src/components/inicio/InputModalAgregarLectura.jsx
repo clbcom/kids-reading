@@ -5,7 +5,7 @@ import InputConEtiqueta from "../inputs/InputConEtiqueta";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
 import { useRealmCrud } from "../../datos/RealmContext";
 
-const InputModalAgregarLectura = ({ reference, onAgregar }) => {
+const InputModalAgregarLectura = ({ reference }) => {
   const [titulo, setTitulo] = useState("");
   const [lectura, setLectura] = useState("");
   const { agregarLectura } = useRealmCrud();
@@ -26,9 +26,14 @@ const InputModalAgregarLectura = ({ reference, onAgregar }) => {
     if (titulo.length === 0) return;
     if (lectura.length === 0) return;
 
-    agregarLectura(titulo.trim(), lectura.trim());
+    const nuevaLectura = {
+      titulo: titulo.trim(),
+      lectura: lectura.trim(),
+      nivel: 1,
+    };
+
+    agregarLectura(nuevaLectura);
     limpiarInputs();
-    onAgregar();
     reference.current.close();
   };
 

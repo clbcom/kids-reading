@@ -1,15 +1,10 @@
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useState } from "react";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
 import IconOutline from "../icons/IconOutline";
 
-const TarjetaContenido = ({ titulo, lectura }) => {
-  const [mostrarTodo, setMostrarTodo] = useState(false);
+const TarjetaContenido = ({ titulo }) => {
   return (
-    <TouchableOpacity
-      onPress={() => setMostrarTodo((prev) => !prev)}
-      style={styles.tarjeta__contenido}
-    >
+    <TouchableOpacity style={styles.tarjeta__contenido}>
       <IconOutline name="reader" />
       <Text style={styles.tarjeta__titulo}>{titulo}</Text>
     </TouchableOpacity>

@@ -7,6 +7,7 @@ class Lecturas extends Realm.Object {
       _id: { type: "uuid", default: () => new Realm.BSON.UUID() },
       titulo: "string",
       lectura: "string",
+      nivel: "int",
       fecha: { type: "date", default: () => new Date() },
     },
     primaryKey: "_id",
