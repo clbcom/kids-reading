@@ -10,7 +10,7 @@ const AppNavTab = ({ to, icon }) => {
   const activo = location.pathname === to;
   return (
     <Link
-      underlayColor={Colores.azulClaro}
+      underlayColor={Colores.verdeClaro}
       style={styles.link_container}
       to={to}
     >
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 28,
-    color: Colores.azulClaro,
+    color: Colores.verdeClaro,
   },
   icon__activo: {
     color: Colores.secundario,

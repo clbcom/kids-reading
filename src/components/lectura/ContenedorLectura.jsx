@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   contenedor__titulo: {
     marginHorizontal: Tema.margin,
-    backgroundColor: Colores.azulMedio,
+    backgroundColor: Colores.verdeMedio,
     borderBottomStartRadius: Tema.borderRadius,
     borderBottomEndRadius: Tema.borderRadius,
   },

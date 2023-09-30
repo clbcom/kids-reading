@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { useState, useEffect, useRef } from "react";
 
 import BotonAdicionar from "./BotonAdicionar";
@@ -6,7 +6,7 @@ import InputModalAgregarLectura from "./InputModalAgregarLectura";
 import TextoCargando from "../carga/TextoCargando";
 import { Colores } from "../../constantes";
 import { useRealmCrud } from "../../datos/RealmContext";
-import TarjetaContenido from "./TarjetaContenido";
+import TarjetaNivel from "./TarjetaNivel";
 
 const Tarjetas = () => {
   const refModalAgregarLectura = useRef(null);
@@ -31,16 +31,14 @@ const Tarjetas = () => {
       {cargando ? (
         <TextoCargando />
       ) : (
-        <FlatList
-          data={lecturas}
-          renderItem={({ item }) => (
-            <TarjetaContenido
-              key={item._id}
-              titulo={item.titulo}
-              lectura={item.lectura}
-            />
-          )}
-        />
+        <ScrollView>
+          <TarjetaNivel nivel={1} />
+          <TarjetaNivel nivel={2} />
+          <TarjetaNivel nivel={3} />
+          <TarjetaNivel nivel={4} />
+          <TarjetaNivel nivel={5} />
+          <TarjetaNivel nivel={6} />
+        </ScrollView>
       )}
       <BotonAdicionar onPress={handleOnPressAgregar} />
       <InputModalAgregarLectura

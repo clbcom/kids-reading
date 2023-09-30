@@ -11,6 +11,7 @@ const Tema = {
   gapLarge: 20,
 
   // fontSizes
+  h0: 50,
   h1: 40,
   h2: 30,
   small: 20,

@@ -16,4 +16,4 @@
 
 ## OBJETIVOS ESPECIFICOS
 
-- [] Interfaz grafica amigable
+- [ ] Interfaz grafica amigable

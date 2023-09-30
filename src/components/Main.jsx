@@ -20,7 +20,7 @@ const Main = () => {
         alignItems: "center",
         justifyContent: "space-between",
       }}
-      source={Fondos.blanco}
+      source={Fondos.estrellas2}
     >
       <StatusBar barStyle="dark-content" />
       <RealmProviderContext>
