@@ -12,13 +12,6 @@ const ContenedorBotones = () => {
 
   return (
     <View style={styles.contenedor__microfono}>
-      //TODO: Eliminar este componenete de icono de lista
-      <BotonConIcono
-        name="list"
-        size={IconoSize.large}
-        style={styles.boton}
-        styleIcon={{ color: Colores.secundario }}
-      />
       <BotonConIcono
         name={estaGrabando ? "mic-off" : "mic"}
         size={IconoSize.xxlarge}

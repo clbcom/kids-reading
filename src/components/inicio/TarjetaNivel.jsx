@@ -36,7 +36,7 @@ const TarjetaNivel = ({ nivel }) => {
       <View style={styles.contenido__nivel}>
         {lecturasPorNivel &&
           lecturasPorNivel.map(({ _id, titulo }) => (
-            <TarjetaContenido key={_id} titulo={titulo} />
+            <TarjetaContenido key={_id} id={_id} titulo={titulo} />
           ))}
       </View>
     </View>
