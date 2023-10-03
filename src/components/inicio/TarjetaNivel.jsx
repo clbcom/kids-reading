@@ -1,17 +1,21 @@
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import ViewBackgroundImage from "../backgrounds/ViewBackgroundImage";
 import { Colores, Fondos, FuentesTexto, Tema } from "../../constantes";
 import TarjetaContenido from "./TarjetaContenido";
 import { useRealmCrud } from "../../datos/RealmContext";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const TarjetaNivel = ({ nivel }) => {
+const TarjetaNivel = ({ nivel, existeNuevo }) => {
   const [lecturasPorNivel, setLecturasPorNivel] = useState([]);
   const { obtenerPorNivel } = useRealmCrud();
 
   useEffect(() => {
     setLecturasPorNivel([...obtenerPorNivel(nivel)]);
   }, []);
+
+  useEffect(() => {
+    setLecturasPorNivel([...obtenerPorNivel(nivel)]);
+  }, [existeNuevo]);
 
   return (
     <View style={styles.contenedor}>

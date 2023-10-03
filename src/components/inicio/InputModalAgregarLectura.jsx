@@ -1,13 +1,15 @@
 import ModalInferior from "../modals/ModalInferior";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import InputConEtiqueta from "../inputs/InputConEtiqueta";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
 import { useRealmCrud } from "../../datos/RealmContext";
+import CheckBoxContenedor from "../inputs/CheckBoxContenedor";
 
-const InputModalAgregarLectura = ({ reference }) => {
+const InputModalAgregarLectura = ({ reference, refrescar }) => {
   const [titulo, setTitulo] = useState("");
   const [lectura, setLectura] = useState("");
+  const [nivel, setNivel] = useState(1);
   const { agregarLectura } = useRealmCrud();
 
   const handleOnChangeTitulo = (text) => {
@@ -16,6 +18,10 @@ const InputModalAgregarLectura = ({ reference }) => {
 
   const handleOnChangeLectura = (text) => {
     setLectura(text);
+  };
+
+  const handleOnPressChecked = (valor) => {
+    setNivel(valor);
   };
 
   const limpiarInputs = () => {
@@ -29,11 +35,12 @@ const InputModalAgregarLectura = ({ reference }) => {
     const nuevaLectura = {
       titulo: titulo.trim(),
       lectura: lectura.trim(),
-      nivel: 1,
+      nivel: nivel,
     };
 
     agregarLectura(nuevaLectura);
     limpiarInputs();
+    refrescar();
     reference.current.close();
   };
 
@@ -54,6 +61,11 @@ const InputModalAgregarLectura = ({ reference }) => {
           Lectura
         </InputConEtiqueta>
       </View>
+      <CheckBoxContenedor
+        valorInicial={nivel}
+        onCheck={handleOnPressChecked}
+        style={styles.contenedor__checkbox}
+      />
       <View style={styles.contenedor__botones}>
         <TouchableOpacity onPress={handleOnPressGuardar} style={styles.boton}>
           <Text style={styles.texto__boton}>Aceptar</Text>
@@ -71,6 +83,10 @@ const styles = StyleSheet.create({
   },
   contenedor__inputs: {
     flex: 1,
+  },
+  contenedor__checkbox: {
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   contenedor__botones: {
     flexDirection: "row",

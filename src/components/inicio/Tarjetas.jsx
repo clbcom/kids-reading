@@ -1,5 +1,5 @@
-import { View, StyleSheet, ScrollView } from "react-native";
-import { useState, useEffect, useRef } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
 
 import BotonAdicionar from "./BotonAdicionar";
 import InputModalAgregarLectura from "./InputModalAgregarLectura";
@@ -9,6 +9,7 @@ import TarjetaNivel from "./TarjetaNivel";
 
 const Tarjetas = () => {
   const refModalAgregarLectura = useRef(null);
+  const [swichNuevo, setSwichNuevo] = useState(false);
   const [cargando, setCargando] = useState(true);
 
   const handleOnPressAgregar = () => {
@@ -21,17 +22,20 @@ const Tarjetas = () => {
 
   return (
     <View style={styles.contenedor}>
-      {cargando ? (
-        <TextoCargando />
-      ) : (
+      {cargando ? <TextoCargando /> : (
         <ScrollView>
-          <TarjetaNivel nivel={1} />
-          <TarjetaNivel nivel={2} />
-          <TarjetaNivel nivel={3} />
+          <TarjetaNivel existeNuevo={swichNuevo} nivel={1} />
+          <TarjetaNivel existeNuevo={swichNuevo} nivel={2} />
+          <TarjetaNivel existeNuevo={swichNuevo} nivel={3} />
         </ScrollView>
       )}
       <BotonAdicionar onPress={handleOnPressAgregar} />
-      <InputModalAgregarLectura reference={refModalAgregarLectura} />
+      <InputModalAgregarLectura
+        refrescar={() => {
+          setSwichNuevo((prev) => !prev);
+        }}
+        reference={refModalAgregarLectura}
+      />
     </View>
   );
 };
