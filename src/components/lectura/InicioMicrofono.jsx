@@ -1,10 +1,10 @@
 import { View, StyleSheet } from "react-native";
-import ContenedorBotones from "./ContenedorBotones";
-import ContenedorLectura from "./ContenedorLectura";
 import { useParams } from "react-router-native";
 import { useEffect } from "react";
 import { useRealmCrud } from "../../datos/RealmContext";
 import { useLecturaActual } from "../../datos/LecturaActualContext";
+import ContenedorBotones from "./ContenedorBotones";
+import ContenedorLectura from "./ContenedorLectura";
 
 const InicioMicrofono = () => {
   const params = useParams();
