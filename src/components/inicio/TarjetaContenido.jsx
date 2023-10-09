@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
 import IconOutline from "../icons/IconOutline";
 import { Link } from "react-router-native";

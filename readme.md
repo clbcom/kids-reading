@@ -15,8 +15,12 @@
 - [x] Limpiar el codigo para usar realm
 - [x] Refactorizar la ruta de tarjetas para mostrar los datos de realm
 
-- [ ] Desarrollar una arquitectura para usar sin interrupciones el microfono o
-      buscar alguna alternativa
+- [~] Desarrollar una arquitectura para usar sin interrupciones el microfono o
+  buscar alguna alternativa
+
+- [x] TErminar la ventana de microfono adaptando el contenido a la imagen del
+      fondo
+- [ ] Sacar la paleta de colores de las imagenes de fondo
 
 ## OBJETIVOS ESPECIFICOS
 
@@ -24,9 +28,10 @@
 
 ## Pruebas
 
-- [ ] Cambiar el tamaño de las letras donde se leera
-- [ ] Quitar el espaciado en el commponenete del microfono, la pagina tiene que
+- [x] Cambiar el tamaño de las letras donde se leera
+- [x] Quitar el espaciado en el commponenete del microfono, la pagina tiene que
       mostrarse sin border, tratar de utilizar la mayor cantidad de pantalla
       posible
-- [ ] Solucionar el bug del microfono que se muestra apagado cuando esta encendido      
+- [x] Solucionar el bug del microfono que se muestra apagado cuando esta
+      encendido
 - [ ] Dar una animacion tipo estereo al empezar a grabar
