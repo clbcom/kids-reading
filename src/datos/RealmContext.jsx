@@ -1,3 +1,4 @@
+import Realm from "realm";
 import { createContext, useContext, useEffect } from "react";
 import { createRealmContext } from "@realm/react";
 import { Lecturas } from "./Esquemas";
@@ -15,6 +16,10 @@ const RealmContext = createContext();
 const RealmProviderCrud = ({ children }) => {
   const realm = useRealm();
   const cache = new Map();
+
+  const obtenerLectura = (id) => {
+    return realm.objectForPrimaryKey(Lecturas, new Realm.BSON.UUID(id));
+  };
 
   const obtenerPorNivel = (nivel) => {
     if (cache.has(nivel)) {
@@ -110,6 +115,7 @@ const RealmProviderCrud = ({ children }) => {
   return (
     <RealmContext.Provider
       value={{
+        obtenerLectura,
         obtenerPorNivel,
         obtenerLecturas,
         agregarLectura,

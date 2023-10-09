@@ -26,7 +26,9 @@ const Main = () => {
       <RealmProviderContext>
         <LecturaActualProvider>
           <Routes>
-            <Route path="/" element={<InicioMicrofono />} exact />
+            <Route path="/" element={<InicioMicrofono />}>
+              <Route path="/:id" element={<InicioMicrofono />} />
+            </Route>
             <Route path="/tarjetas" exact element={<Tarjetas />} />
             <Route path="/configuracion" element={<TextoCargando />} exact />
           </Routes>

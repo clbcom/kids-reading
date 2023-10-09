@@ -1,6 +1,7 @@
-import { View, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 const ViewBackgroundImage = ({
+  style,
   source,
   resizeMode,
   opacity,
@@ -8,7 +9,7 @@ const ViewBackgroundImage = ({
   ...otrasProps
 }) => {
   return (
-    <View {...otrasProps}>
+    <View style={[style,  styles.default ]} {...otrasProps}>
       <Image
         opacity={opacity}
         resizeMode={resizeMode}
@@ -27,6 +28,14 @@ const styles = StyleSheet.create({
     left: 0,
     width: "100%",
     height: "100%",
+  },
+  // para evitar que deformen el fondo, y este se acople como deberia
+  default: {
+    padding: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 });
 export default ViewBackgroundImage;

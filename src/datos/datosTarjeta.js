@@ -1,38 +1,79 @@
 export const tarjetas = [
   {
-    titulo: "El Cumpleaños de Osito",
+    titulo: "Leccion 1",
     lectura:
-      "Hoy es un día muy especial en el bosque. Es el cumpleaños de Osito, y todos sus amigos del bosque se han reunido para celebrar. El conejo trajo zanahorias, el ratón llevó queso y el pajarito cantó una canción alegre. Todos juntos, jugaron a las escondidas y se rieron mucho. Al final, Osito sopló las velas de su pastel y todos gritaron: '¡Feliz cumpleaños, Osito!' Fue el mejor día de su vida.",
+      "Veo un gato.\nEl gato esta lamiendo leche.\nEl gato esta en su casa.",
     nivel: 1,
   },
   {
-    titulo: "El Día de Aventuras en la Granja",
+    titulo: "Leccion 2",
     lectura:
-      "Hoy, Laura y su hermano Lucas fueron a visitar la granja de su abuelo. Había tantas cosas emocionantes por hacer. Ayudaron a alimentar a las gallinas y recogieron huevos frescos. Luego, dieron zanahorias a los caballos y se subieron a un tractor viejo. Vieron vacas, ovejas y hasta un cerdito bebé. Al final del día, abuelo les hizo una hoguera y asaron malvaviscos bajo las estrellas. Fue un día lleno de aventuras en la granja.",
+      "El sol brilla en el cielo.\nEl pájaro canta en el árbol.\nEl día es bonito.",
+    nivel: 1,
+  },
+  {
+    titulo: "Leccion 3",
+    lectura: "Mi gato es peludo.\nEl gato juega.\nYo juego con el gato.",
+    nivel: 1,
+  },
+  {
+    titulo: "Leccion 4",
+    lectura:
+      "Ana tiene una muñeca.\nLa muñeca es bonita.\nAna cuida de su muñeca.",
+    nivel: 1,
+  },
+  {
+    titulo: "Leccion 5",
+    lectura:
+      "El perro corre rápido.\nLa pelota es roja.\nEl perro atrapa la pelota.",
+    nivel: 1,
+  },
+  {
+    titulo: "Leccion 6",
+    lectura:
+      "En la granja hay vacas.\nLas vacas dan leche.\nLa leche es buena.",
+    nivel: 1,
+  },
+  {
+    titulo: "Leccion 1",
+    lectura:
+      "El libro es interesante.\nLeo el libro todos los días.\nMe gusta leer.",
     nivel: 2,
   },
   {
-    titulo: "El Tesoro del Pirata",
+    titulo: "Leccion 2",
     lectura:
-      "En una isla lejana, un grupo de niños aventureros descubrió un mapa del tesoro en una antigua biblioteca. El mapa los llevó a una playa oculta donde creían que un tesoro pirata estaba enterrado. La búsqueda no fue fácil. Tuvieron que resolver acertijos y sortear obstáculos, enfrentándose a su miedo a la oscuridad y a las serpientes en el camino. Finalmente, después de días de búsqueda, encontraron el cofre del tesoro lleno de monedas doradas y joyas centelleantes. Descubrieron que la verdadera riqueza está en la aventura y la superación de desafíos.",
+      "En el bosque, los árboles son altos.\nLos pájaros cantan melodías hermosas.\nEl aire es fresco y limpio.",
     nivel: 2,
   },
   {
-    titulo: "La Expedición a la Montaña Misteriosa",
+    titulo: "Leccion 3",
     lectura:
-      "Lucía y sus amigos estaban emocionados por su próxima expedición a la montaña más alta de la región, la Montaña del Dragón. Sabían que el viaje sería desafiante, con senderos empinados y cambios climáticos impredecibles. Empacaron sus mochilas con comida, equipo y valor. Durante días, ascendieron, enfrentando vientos fuertes y nieve espesa. Pero cuando llegaron a la cima, la vista panorámica los dejó sin aliento. Se sintieron en la cima del mundo. La expedición no solo fortaleció su amistad, sino que también les enseñó que con determinación y trabajo en equipo, podían superar cualquier obstáculo.",
+      "María estudia mucho para el examen.\nElla resuelve problemas de matemáticas.\nQuiere sacar una buena nota.",
+    nivel: 2,
+  },
+  {
+    titulo: "Leccion 4",
+    lectura:
+      "El científico hizo un gran descubrimiento.\nSu investigación es importante para la medicina.\nEl mundo se beneficiará de su trabajo.",
+    nivel: 2,
+  },
+  {
+    titulo: "Leccion 1",
+    lectura:
+      "En el siglo XXI, la tecnología ha transformado nuestras vidas de manera radical. La comunicación instantánea a través de dispositivos móviles nos conecta con personas de todo el mundo. Las redes sociales se han convertido en una parte fundamental de nuestra vida cotidiana, y la inteligencia artificial está cambiando la forma en que trabajamos y vivimos. Estamos en una era de avances tecnológicos sin precedentes que nos desafían a adaptarnos constantemente.",
     nivel: 3,
   },
   {
-    titulo: "El Misterio de la Antigua Mansión",
+    titulo: "Leccion 2",
     lectura:
-      "Cuando un grupo de amigos decidió explorar la antigua mansión del pueblo, no tenían idea de la historia que se escondía tras sus puertas cerradas. La mansión estaba rodeada de misterio y rumores de fantasmas. A medida que recorrían sus oscuros pasillos, descubrieron habitaciones secretas, retratos antiguos y diarios llenos de secretos. A medida que profundizaban en la historia de la mansión, comenzaron a desentrañar un misterio que había estado oculto durante generaciones. Su aventura los llevó a un emocionante descubrimiento y a la resolución de un antiguo enigma.",
+      "La literatura clásica ofrece una riqueza de conocimiento y perspectiva. Las obras de autores como Shakespeare, Cervantes y Dickens siguen siendo relevantes en la sociedad actual. A través de la lectura de estas obras maestras, podemos explorar temas universales como el amor, la justicia y la condición humana. La literatura nos permite viajar en el tiempo y experimentar diferentes culturas, enriqueciendo nuestra comprensión del mundo.",
     nivel: 3,
   },
   {
-    titulo: "La Expedición a la Ciudad Perdida",
+    titulo: "Leccion 3",
     lectura:
-      "Un grupo de jóvenes arqueólogos decidió embarcarse en una expedición a una ciudad antigua perdida en la selva. Durante semanas, cortaron su camino a través de la densa vegetación, enfrentando insectos y desafíos naturales. Cuando finalmente llegaron a la ciudad, quedaron maravillados por sus templos y monumentos cubiertos de vegetación. Pero la expedición no fue solo un viaje arqueológico, también fue una prueba de resistencia y camaradería. A medida que exploraban las ruinas, descubrieron artefactos antiguos y pistas sobre la vida en la antigua ciudad. Su expedición fue una aventura que desenterró secretos olvidados durante siglos.",
+      "La conciencia ambiental es esencial en la era moderna. El cambio climático, la pérdida de biodiversidad y la contaminación son desafíos urgentes que enfrentamos. Cada uno de nosotros tiene un papel que desempeñar en la protección de nuestro planeta. La reducción de residuos, el consumo responsable y el apoyo a fuentes de energía sostenible son acciones concretas que podemos tomar. Juntos, podemos marcar la diferencia y preservar nuestro hogar para las generaciones futuras.",
     nivel: 3,
   },
 ];

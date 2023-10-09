@@ -1,13 +1,23 @@
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
 import IconOutline from "../icons/IconOutline";
+import { Link } from "react-router-native";
 
-const TarjetaContenido = ({ titulo }) => {
+const TarjetaContenido = ({ id, titulo }) => {
   return (
-    <TouchableOpacity style={styles.tarjeta__contenido}>
-      <IconOutline name="reader" />
-      <Text style={styles.tarjeta__titulo}>{titulo}</Text>
-    </TouchableOpacity>
+    <Link
+      style={{
+        borderTopStartRadius: Tema.borderRadius,
+        borderTopEndRadius: Tema.borderRadius,
+      }}
+      to={`/${id}`}
+      underlayColor={`${Colores.primario}55`}
+    >
+      <View style={styles.tarjeta__contenido}>
+        <IconOutline name="reader" />
+        <Text style={styles.tarjeta__titulo}>{titulo}</Text>
+      </View>
+    </Link>
   );
 };
 
