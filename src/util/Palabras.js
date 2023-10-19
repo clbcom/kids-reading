@@ -34,22 +34,8 @@ const quitarTildes = (palabra) => {
   return nuevaPalabra;
 };
 
-const comparadorDePalabras = (parrafo1, parrafo2) => {
-  parrafo1 = separadorDePalabrasSinSignosPuntacion(parrafo1);
-  parrafo2 = separadorDePalabrasSinSignosPuntacion(parrafo2);
-
-  if (parrafo1.length !== parrafo2.length) return false;
-
-  let resultado = Array();
-  parrafo1.forEach((palabra, i) => {
-    if (palabra !== parrafo2[i]) resultado.push(i);
-  });
-
-  return {
-    esIgual: resultado.length === 0,
-    errores: resultado,
-    numeroErrores: resultado.length,
-  };
+export {
+  contadorDePalabras,
+  separadorDePalabras,
+  separadorDePalabrasSinSignosPuntacion,
 };
-
-export { comparadorDePalabras, contadorDePalabras, separadorDePalabras };

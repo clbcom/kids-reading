@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-native-voice/voice": "^3.2.4",
     "@realm/react": "^0.6.0",
+    "diff": "^5.1.0",
     "expo": "~49.0.12",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",

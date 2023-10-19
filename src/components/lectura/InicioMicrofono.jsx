@@ -9,18 +9,22 @@ import { Colores, Fondos, Tema } from "../../constantes";
 import ContenedorLecturaTitulo from "./ContenedorLecturaTitulo";
 import ContenedorLecturaParrafo from "./ContenedorLecturaParrafo";
 import ViewBackgroundImage from "../backgrounds/ViewBackgroundImage";
-import { comparadorDePalabras, separadorDePalabras } from "../../util/Palabras";
+import ContenedorLecturaResultado from "./ContenedorLecturaResultado";
 
 const InicioMicrofono = () => {
   const params = useParams();
-  const { obtenerLectura } = useRealmCrud();
+  const { obtenerLectura, obtenerLecturas } = useRealmCrud();
   const [lecturaActual, setLecturaActual] = useLecturaActual();
   const [leyendo, setLeyendo] = useState(false);
   const [estaFinalizado, setEstaFinalizado] = useState(false);
-  const [resultadoLectura, setResultadoLectura] = useState({});
   const solGirando = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    if (lecturaActual === undefined || lecturaActual === null) {
+      const lect = obtenerLecturas();
+      setLecturaActual(lect[0]);
+    }
+
     if (params.id !== undefined) {
       setLecturaActual(obtenerLectura(params.id));
       setLeyendo(false);
@@ -35,34 +39,31 @@ const InicioMicrofono = () => {
   // Microfono
   const [resultado, setResultado] = useState("");
 
-  Voice.onSpeechStart = () => {
-    setLeyendo(true);
-  };
-
-  Voice.onSpeechEnd = (ev) => {
+  Voice.onSpeechError = () => {
     setLeyendo(false);
     solGirando.resetAnimation();
-    console.log("Microfono apagado");
+  };
+
+  Voice.onSpeechStart = () => {
+    if (Voice.isRecognizing()) {
+      setLeyendo(true);
+      setEstaFinalizado(false);
+    }
+  };
+
+  Voice.onSpeechEnd = () => {
+    setLeyendo(false);
+    solGirando.resetAnimation();
   };
 
   Voice.onSpeechResults = ({ value }) => {
-    // se realizara el comparado de las lecturas
-    value.forEach((res) => {
-      const result = comparadorDePalabras(res, lecturaActual.lectura);
-      if (result !== false) {
-        setEstaFinalizado(true);
-        setResultadoLectura({
-          palabras: separadorDePalabras(res).length,
-          ...result,
-        });
-      }
-    });
+    setResultado(value[0]);
+    setEstaFinalizado(true);
   };
 
   const iniciar = () => {
     try {
       Voice.start("es-ES");
-
       // inicia la animacion
       if (!leyendo) {
         console.log("Microfono encendido");
@@ -83,7 +84,11 @@ const InicioMicrofono = () => {
   };
   const detener = () => {
     try {
-      Voice.stop();
+      Voice.destroy();
+      if (leyendo) {
+        setLeyendo(false);
+        solGirando.resetAnimation();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -117,10 +122,9 @@ const InicioMicrofono = () => {
             />
           )
           : (
-            <ContenedorLecturaParrafo
-              lectura={`Correcto: ${
-                resultadoLectura.palabras - resultadoLectura.numeroErrores
-              }\nErrores: ${resultadoLectura.numeroErrores}\n Palabras: ${resultadoLectura.palabras}`}
+            <ContenedorLecturaResultado
+              resultado={resultado}
+              lectura={lecturaActual.lectura}
             />
           )}
         <View style={styles.contenedor__boton}>

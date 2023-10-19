@@ -7,10 +7,7 @@ const ContenedorLecturaParrafo = ({ lectura }) => {
       style={styles.contenedor__lectura__texto}
     >
       <Text
-        style={{
-          ...FuentesTexto.parrafoLarge,
-          fontSize: Tema.h1,
-        }}
+        style={styles.texto__parrafo}
       >
         {lectura}
       </Text>
@@ -23,6 +20,10 @@ const styles = StyleSheet.create({
     paddingLeft: Tema.paddingLarge,
     paddingRight: Tema.paddingLarge * 2,
     marginTop: Tema.marginLarge * 3,
+  },
+  texto__parrafo: {
+    ...FuentesTexto.parrafoLarge,
+    fontSize: Tema.h1,
   },
 });
 

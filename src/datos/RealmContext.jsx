@@ -36,15 +36,13 @@ const RealmProviderCrud = ({ children }) => {
 
   const obtenerLecturas = () => {
     if (cache.size === 0) {
-      const lecturas = [
-        ...obtenerPorNivel(1),
-        ...obtenerPorNivel(2),
-        ...obtenerPorNivel(3),
-      ];
-      return lecturas;
+      return realm.objects(Lecturas);
     } else {
       const lecturas = new Array();
-      cache.forEach((lectura) => lecturas.push(JSON.parse(lectura)));
+      cache.forEach((nivel) => {
+        nivel = JSON.parse(nivel);
+        nivel.forEach((lectura) => lecturas.push(lectura));
+      });
       return lecturas;
     }
   };
@@ -60,9 +58,13 @@ const RealmProviderCrud = ({ children }) => {
       realm.write(() => {
         objetoLectura = realm.create(Lecturas, lectura);
       });
-      const lecturasPorNivel = obtenerPorNivel(lectura.nivel);
-      lecturasPorNivel.push(objetoLectura);
-      cache.set(lectura.nivel, JSON.stringify(lecturasPorNivel));
+      if (cache.has(lectura.nivel)) {
+        const lecturasPorNivel = new Array(...obtenerPorNivel(lectura.nivel));
+        lecturasPorNivel.push(objetoLectura);
+        cache.set(lectura.nivel, JSON.stringify(lecturasPorNivel));
+      } else {
+        cache.set(lectura.nivel, JSON.stringify(new Array(objetoLectura)));
+      }
     } catch (error) {
       objetoLectura = undefined;
       console.error(error);
