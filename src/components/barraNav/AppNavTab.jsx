@@ -1,13 +1,25 @@
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Link } from "react-router-native";
-import { useLocation } from "react-router-native";
+import { useLocation, useParams } from "react-router-native";
 import IconOutline from "../icons/IconOutline";
 import { Colores } from "../../constantes";
+import { useEffect, useState } from "react";
 
 const AppNavTab = ({ to, icon }) => {
   const location = useLocation();
+  const [activo, setActivo] = useState(false);
 
-  const activo = location.pathname === to;
+  const forzarActivoEnRutaMicrofono = (path) => {
+    const rutas = ["/", "/tarjetas", "/configuracion"];
+    let active = rutas.includes(location.pathname);
+    return active ? path : "/";
+  };
+
+  useEffect(() => {
+    const path = forzarActivoEnRutaMicrofono(location.pathname);
+    setActivo(path === to);
+  }, [location]);
+
   return (
     <Link
       underlayColor={Colores.verdeClaro}
