@@ -1,9 +1,16 @@
-const contadorDePalabras = (parrafo) => {
+const contadorDePalabras = (
+  parrafo,
+  options = { ignoraSignosPuntuacion: false },
+) => {
+  if (options.ignoraSignosPuntuacion) {
+    return separadorDePalabrasSinSignosPuntacion(parrafo).length;
+  }
   return separadorDePalabras(parrafo).length;
 };
 
 const separadorDePalabras = (parrafo) => {
   const regEx = /[\n\s\t]+/gm;
+  parrafo = parrafo.trim();
   let arrayPalabras = parrafo.replaceAll(regEx, " ");
   arrayPalabras = arrayPalabras.split(" ");
   return arrayPalabras;
@@ -11,18 +18,8 @@ const separadorDePalabras = (parrafo) => {
 
 const separadorDePalabrasSinSignosPuntacion = (parrafo) => {
   const regExSignosPuntacion = /[,.]+/gm;
-
-  let arrayPalabras = separadorDePalabras(parrafo);
-  arrayPalabras = arrayPalabras.map((palabra) => {
-    //quitamos todos los signos de puntuacion
-    let nuevaPalabra = palabra.replaceAll(regExSignosPuntacion, "");
-    // volvemos todas las palabras en minuscula
-    nuevaPalabra = nuevaPalabra.toLowerCase();
-    // retornamos y quitamos tildes
-    return quitarTildes(nuevaPalabra);
-  });
-
-  return arrayPalabras;
+  parrafo = parrafo.replaceAll(regExSignosPuntacion, "");
+  return separadorDePalabras(parrafo);
 };
 
 const quitarTildes = (palabra) => {
