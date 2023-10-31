@@ -32,6 +32,7 @@ const ContenedorLecturaResultado = ({ lectura, resultado }) => {
     </View>
   );
 };
+// 1270 + 82 (64 + 28)
 
 export default ContenedorLecturaResultado;
 

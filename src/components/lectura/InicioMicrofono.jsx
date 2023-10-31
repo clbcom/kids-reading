@@ -4,30 +4,38 @@ import { useParams } from "react-router-native";
 import { useEffect, useRef, useState } from "react";
 import { useRealmCrud } from "../../datos/RealmContext";
 import { useLecturaActual } from "../../datos/LecturaActualContext";
-import BotonConIcono from "../botones/BotonConIcono";
-import { Colores, Fondos, Tema } from "../../constantes";
+import { Fondos } from "../../constantes";
 import ContenedorLecturaTitulo from "./ContenedorLecturaTitulo";
 import ContenedorLecturaParrafo from "./ContenedorLecturaParrafo";
 import ViewBackgroundImage from "../backgrounds/ViewBackgroundImage";
 import ContenedorLecturaResultado from "./ContenedorLecturaResultado";
+import ContenedorLecturaBotones from "./ContenedorLecturaBotones";
 
 const InicioMicrofono = () => {
   const params = useParams();
-  const { obtenerLectura, obtenerLecturas } = useRealmCrud();
-  const [lecturaActual, setLecturaActual] = useLecturaActual();
+  const { obtenerLecturas } = useRealmCrud();
+  const [lecturaActual, setLecturaActual, idLecturaSiguiente] =
+    useLecturaActual();
   const [leyendo, setLeyendo] = useState(false);
   const [estaFinalizado, setEstaFinalizado] = useState(false);
   const solGirando = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
+    const lecturas = obtenerLecturas();
     if (lecturaActual === undefined || lecturaActual === null) {
-      const lect = obtenerLecturas();
-      setLecturaActual(lect[0]);
+      setLecturaActual(lecturas[0], lecturas[1]._id);
     }
 
     if (params.id !== undefined) {
-      setLecturaActual(obtenerLectura(params.id));
-      setLeyendo(false);
+      const indiceLecturaActual = lecturas.findIndex(({ _id }) =>
+        _id === params.id
+      );
+      setLecturaActual(
+        lecturas[indiceLecturaActual],
+        indiceLecturaActual + 1 === lecturas.length
+          ? lecturas[0]._id
+          : lecturas[indiceLecturaActual + 1]._id,
+      );
     }
 
     return () => {
@@ -35,6 +43,22 @@ const InicioMicrofono = () => {
       Voice.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    if (params.id !== undefined) {
+      const lecturas = obtenerLecturas();
+      const indiceLecturaActual = lecturas.findIndex(({ _id }) =>
+        _id.toString() === params.id.toString()
+      );
+      setLecturaActual(
+        lecturas[indiceLecturaActual],
+        indiceLecturaActual + 1 === lecturas.length
+          ? lecturas[0]._id
+          : lecturas[indiceLecturaActual + 1]._id,
+      );
+    }
+    setEstaFinalizado(false);
+  }, [params.id]);
 
   // Microfono
   const [resultado, setResultado] = useState("");
@@ -66,7 +90,6 @@ const InicioMicrofono = () => {
       Voice.start("es-ES");
       // inicia la animacion
       if (!leyendo) {
-        console.log("Microfono encendido");
         Animated.loop(
           solGirando,
           Animated.timing(solGirando, {
@@ -103,6 +126,13 @@ const InicioMicrofono = () => {
     }
   };
 
+  const handlePressReiniciar = () => {
+    setEstaFinalizado(false);
+    if (!leyendo) {
+      iniciar();
+    }
+  };
+
   const rotate = solGirando.interpolate({
     inputRange: [0, 1],
     outputRange: ["0deg", "360deg"],
@@ -127,25 +157,14 @@ const InicioMicrofono = () => {
               lectura={lecturaActual.lectura}
             />
           )}
-        <View style={styles.contenedor__boton}>
-          <Animated.View
-            style={{
-              transform: [{ rotate }],
-            }}
-          >
-            <BotonConIcono
-              onPress={handlePressMicrofono}
-              name={leyendo ? "mic" : "mic-off"}
-              style={styles.boton__microfono}
-              styleIcon={{
-                color: Colores.warning,
-                // soluciona un error de la libreria de iconos que hace que el icono de microfono encendido este a un lado y no centreado como los demas
-                paddingLeft: leyendo ? Tema.paddingSmall : 0,
-              }}
-              size={Tema.h0 * 2}
-            />
-          </Animated.View>
-        </View>
+        <ContenedorLecturaBotones
+          finalizado={estaFinalizado}
+          rotate={rotate}
+          leyendo={leyendo}
+          onPressMicrofono={handlePressMicrofono}
+          onPressReiniciar={handlePressReiniciar}
+          idSiguiente={idLecturaSiguiente}
+        />
       </ViewBackgroundImage>
     </View>
   );
@@ -156,20 +175,6 @@ const styles = StyleSheet.create({
     flex: 1,
     overflow: "hidden",
     width: "100%",
-  },
-  contenedor__boton: {
-    flex: 0,
-    width: "100%",
-    alignItems: "center",
-    padding: Tema.padding,
-  },
-  boton__microfono: {
-    padding: Tema.padding,
-    backgroundColor: Colores.secundario,
-    borderRadius: Tema.borderRadius * 10, //para que el los border se vean redondos
-    borderColor: Colores.warning,
-    borderWidth: 31,
-    borderStyle: "dotted",
   },
 });
 

@@ -2,7 +2,7 @@ export const tarjetas = [
   {
     titulo: "Leccion 1",
     lectura:
-      "Veo un gato.\nEl gato esta lamiendo leche.\nEl gato esta en su casa.",
+      "Veo un gato.\nEl gato está lamiendo leche.\nEl gato está en su casa.",
     nivel: 1,
   },
   {

@@ -21,8 +21,8 @@
 - [x] Solucionar el bug del microfono que se muestra apagado cuando esta
       encendido
 - [ ] Mejorar la interfaz de resultados
-- [ ] Agregar botones de siguiente leccion y repetir
-- [ ] Agregar boton de reiniciar lectura
+- [x] Agregar botones de siguiente leccion y repetir
+- [x] Agregar boton de reiniciar lectura
 - [ ] Implementar un scroll automatico a medida que vaya leyendo.
 
 ## OBJETIVOS ESPECIFICOS

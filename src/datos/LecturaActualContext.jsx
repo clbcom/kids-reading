@@ -6,18 +6,32 @@ const LecturaActualContext = createContext();
 
 const LecturaActualProvider = ({ children }) => {
   const { obtenerLecturas } = useRealmCrud();
-  const [lecturaActual, setLecturaActual] = useState(null);
   const [cargando, setCargando] = useState(true);
+  const [lecturaActual, setLecturaActual] = useState(null);
+  const [idSiguienteLectura, setIdSiguienteLectura] = useState(null);
+
+  const establecerLecturaActualConSiguiente = (lectura, idSiguienteLectura) => {
+    setLecturaActual(lectura);
+    setIdSiguienteLectura(idSiguienteLectura);
+  };
 
   useEffect(() => {
-    setLecturaActual(obtenerLecturas()[0]);
+    const lecturas = obtenerLecturas();
+    establecerLecturaActualConSiguiente(
+      lecturas[0],
+      lecturas[1] === undefined ? undefined : lecturas[1]._id,
+    );
     setCargando(false);
   }, []);
 
   return (
     cargando ? <TextoCargando /> : (
       <LecturaActualContext.Provider
-        value={[lecturaActual, setLecturaActual]}
+        value={[
+          lecturaActual,
+          establecerLecturaActualConSiguiente,
+          idSiguienteLectura,
+        ]}
       >
         {children}
       </LecturaActualContext.Provider>
