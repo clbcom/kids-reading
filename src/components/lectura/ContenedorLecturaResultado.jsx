@@ -13,6 +13,59 @@ const ContenedorLecturaResultado = ({ lectura, resultado }) => {
   const [numeroCorrectos, setNumeroCorrectos] = useState(0);
   const [numeroErrores, setNumeroErrores] = useState(0);
 
+  function compararParrafos(resultado, lecturaObjetivo) {
+    const comparacion = diffWords(resultado, lecturaObjetivo, {
+      ignoreCase: true,
+    });
+    const numeroDePalabras = contadorDePalabras(lecturaObjetivo);
+    const numeroDeErrores = obtenerNumeroDeErrores(comparacion);
+    const numeroDeCorrectos = numeroDePalabras - numeroDeErrores;
+
+    // mostrar con colores las comparaciones
+    return (
+      <>
+        <Text>
+          {comparacion.map((el, _) => {
+            let color = (el.added && el.value !== "," && el.value !== ".")
+              ? Colores.danger
+              : Colores.success;
+
+            return (
+              !el.removed &&
+              (
+                <Text key={_} style={{ color }}>
+                  {el.value}
+                </Text>
+              )
+            );
+          })}
+        </Text>
+        <View style={styles.contenedor__estadistica}>
+          <View style={styles.item__estadistica}>
+            <Text style={[styles.palabra]}>{numeroDePalabras}</Text>
+            <Text style={[styles.palabra]}>Palabras</Text>
+          </View>
+          <View style={styles.item__estadistica}>
+            <Text style={[styles.palabra, { color: Colores.success }]}>
+              {numeroDeCorrectos}
+            </Text>
+            <Text style={[styles.palabra, { color: Colores.success }]}>
+              Correcto
+            </Text>
+          </View>
+          <View style={styles.item__estadistica}>
+            <Text style={[styles.palabra, { color: Colores.danger }]}>
+              {numeroDeErrores}
+            </Text>
+            <Text style={[styles.palabra, { color: Colores.danger }]}>
+              Errores
+            </Text>
+          </View>
+        </View>
+      </>
+    );
+  }
+
   const obtenerNumeroDeErrores = (resultadoComparacion) => {
     const resultadoFiltrado = resultadoComparacion.filter((
       { added, value },

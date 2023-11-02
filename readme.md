@@ -28,3 +28,22 @@
 ## OBJETIVOS ESPECIFICOS
 
 - [ ] Interfaz grafica amigable
+
+
+## mio de mi
+
+- email
+- datos personales
+- semestre
+- universidad
+- carrera
+
+## articulo
+- hasta hoy en la noche
+## Videos ( viernes en la noche)
+- [ ] uso de librerias
+- [ ] explicacion de la estructura de carpetas
+- [ ] Persistencia de datos (Realm)
+- [ ] Botones 
+- [ ] LIsta de lecturas
+- [ ] Cambios de codigo en tiempo real
