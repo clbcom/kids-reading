@@ -41,9 +41,9 @@
 ## articulo
 - hasta hoy en la noche
 ## Videos ( viernes en la noche)
-- [ ] uso de librerias
-- [ ] explicacion de la estructura de carpetas
-- [ ] Persistencia de datos (Realm)
-- [ ] Botones 
-- [ ] LIsta de lecturas
-- [ ] Cambios de codigo en tiempo real
+- [x] uso de librerias
+- [x] explicacion de la estructura de carpetas
+- [x] Persistencia de datos (Realm)
+- [x] Botones 
+- [x] LIsta de lecturas
+- [x] Cambios de codigo en tiempo real
