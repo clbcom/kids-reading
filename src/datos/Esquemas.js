@@ -9,6 +9,7 @@ class Lecturas extends Realm.Object {
       lectura: "string",
       nivel: "int",
       fecha: { type: "date", default: () => new Date() },
+      editable: "bool",
     },
     primaryKey: "_id",
   };

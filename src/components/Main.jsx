@@ -7,9 +7,9 @@ import Tarjetas from "./inicio/Tarjetas";
 import ViewBackgroundImage from "./backgrounds/ViewBackgroundImage";
 import { Fondos } from "../constantes";
 import InicioMicrofono from "./lectura/InicioMicrofono";
-import TextoCargando from "./carga/TextoCargando";
 import { RealmProviderContext } from "../datos/RealmContext";
 import { LecturaActualProvider } from "../datos/LecturaActualContext";
+import Configuracion from "./configuracion/Configuracion";
 
 const Main = () => {
   return (
@@ -30,7 +30,7 @@ const Main = () => {
               <Route path="/:id" element={<InicioMicrofono />} />
             </Route>
             <Route path="/tarjetas" exact element={<Tarjetas />} />
-            <Route path="/configuracion" element={<TextoCargando />} exact />
+            <Route path="/configuracion" element={<Configuracion />} exact />
           </Routes>
         </LecturaActualProvider>
       </RealmProviderContext>
