@@ -7,11 +7,11 @@ import { useRealmCrud } from "../../datos/RealmContext";
 import CheckBoxContenedor from "../inputs/CheckBoxContenedor";
 import { useCambio } from "../../datos/CambiosContext";
 
-const InputModalAgregarLectura = ({ datosLectura, reference }) => {
+const InputModalEditarLectura = ({ datosLectura, reference }) => {
   const [titulo, setTitulo] = useState("");
   const [lectura, setLectura] = useState("");
-  const [nivel, setNivel] = useState(1);
-  const { agregarLectura } = useRealmCrud();
+  const [nivel, setNivel] = useState(datosLectura.nivel);
+  const { actualizarLectura } = useRealmCrud();
   const [, refrescar] = useCambio();
 
   useEffect(() => {
@@ -42,14 +42,14 @@ const InputModalAgregarLectura = ({ datosLectura, reference }) => {
     if (titulo.length === 0) return;
     if (lectura.length === 0) return;
 
-    const nuevaLectura = {
+    const lecturaEditada = {
+      id: datosLectura._id,
       titulo: titulo.trim(),
       lectura: lectura.trim(),
       nivel: nivel,
-      editable: true,
     };
 
-    agregarLectura(nuevaLectura);
+    actualizarLectura(lecturaEditada);
     limpiarInputs();
     refrescar && refrescar();
     reference.current.close();
@@ -79,7 +79,7 @@ const InputModalAgregarLectura = ({ datosLectura, reference }) => {
       />
       <View style={styles.contenedor__botones}>
         <TouchableOpacity onPress={handleOnPressGuardar} style={styles.boton}>
-          <Text style={styles.texto__boton}>Aceptar</Text>
+          <Text style={styles.texto__boton}>Actualizar</Text>
         </TouchableOpacity>
       </View>
     </ModalInferior>
@@ -118,4 +118,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InputModalAgregarLectura;
+export default InputModalEditarLectura;

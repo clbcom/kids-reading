@@ -1,61 +1,61 @@
 import { StyleSheet, Text, View } from "react-native";
 import { BotonConIcono } from "../botones";
 import { Colores, FuentesTexto, Tema } from "../../constantes";
-import InputModalAgregarLectura from "./InputModalAgregarLectura";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import InputModalEditarLectura from "./InputModalEditarLectura";
+import InputModalEliminarLectura from "./InputModalEliminarLectura";
 
 const TarjetaLeccion = ({ datos }) => {
-  const refModalAgregarLectura = useRef(null);
+  const [leccion] = useState(datos);
+  const refModalEditarLectura = useRef(null);
+  const refModalEliminarLectura = useRef(null);
+
   return (
     <View style={styles.contenedor}>
-      <Text style={styles.titulo}>{datos.titulo}</Text>
+      <Text style={styles.titulo}>{leccion.titulo}</Text>
       <View style={styles.contenedor__botones}>
-        {datos.editable
-          ? (
-            <>
-              <BotonConIcono
-                style={[styles.botones, styles.boton__editar]}
-                styleIcon={[
-                  styles.botones__icono,
-                  styles.boton__editar__icono,
-                ]}
-                name="pencil"
-                onPress={() => refModalAgregarLectura.current.open()}
-              />
-              <BotonConIcono
-                style={[styles.botones, styles.boton__eliminar]}
-                styleIcon={[
-                  styles.botones__icono,
-                  styles.boton__eliminar__icono,
-                ]}
-                name="trash-bin"
-              />
-            </>
-          )
-          : (
-            <>
-              <BotonConIcono
-                style={[styles.botones, styles.boton__no__editable]}
-                styleIcon={[
-                  styles.botones__icono,
-                  styles.boton__no__editable__icono,
-                ]}
-                name="pencil"
-              />
-              <BotonConIcono
-                style={[styles.botones, styles.boton__no__editable]}
-                styleIcon={[
-                  styles.botones__icono,
-                  styles.boton__no__editable__icono,
-                ]}
-                name="trash-bin"
-              />
-            </>
-          )}
+        <>
+          <BotonConIcono
+            style={[
+              styles.botones,
+              datos.editable
+                ? styles.boton__editar
+                : styles.boton__no__editable,
+            ]}
+            styleIcon={[
+              styles.botones__icono,
+              datos.editable
+                ? styles.boton__editar__icono
+                : styles.boton__no__editable__icono,
+            ]}
+            name="pencil"
+            onPress={() => refModalEditarLectura.current.open()}
+          />
+          <BotonConIcono
+            style={[
+              styles.botones,
+              datos.editable
+                ? styles.boton__eliminar
+                : styles.boton__no__editable,
+            ]}
+            styleIcon={[
+              styles.botones__icono,
+              datos.editable
+                ? styles.boton__eliminar__icono
+                : styles.boton__no__editable__icono,
+            ]}
+            name="trash-bin"
+            onPress={() => refModalEliminarLectura.current.open()}
+          />
+        </>
       </View>
-      <InputModalAgregarLectura
+      <InputModalEditarLectura
         datosLectura={datos}
-        reference={refModalAgregarLectura}
+        reference={refModalEditarLectura}
+      />
+      <InputModalEliminarLectura
+        datosLectura={datos}
+        reference={refModalEliminarLectura}
       />
     </View>
   );

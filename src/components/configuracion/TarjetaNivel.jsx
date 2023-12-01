@@ -3,10 +3,12 @@ import { Colores, FuentesTexto, Tema } from "../../constantes";
 import { useEffect, useState } from "react";
 import { useRealmCrud } from "../../datos/RealmContext";
 import TarjetaLeccion from "./TarjetaLeccion";
+import { useCambio } from "../../datos/CambiosContext";
 
-const TarjetaNivel = ({ nivel, existeCambio }) => {
+const TarjetaNivel = ({ nivel }) => {
   const [lecturas, setLecturas] = useState([]);
   const { obtenerPorNivel } = useRealmCrud();
+  const [existeCambio] = useCambio();
 
   useEffect(() => {
     const lecturasDeNivel = obtenerPorNivel(nivel);

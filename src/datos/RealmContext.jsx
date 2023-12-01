@@ -8,7 +8,7 @@ const config = {
   schema: [Lecturas],
 };
 
-const { RealmProvider, useRealm, useObject } = createRealmContext(config);
+const { RealmProvider, useRealm } = createRealmContext(config);
 
 const RealmContext = createContext();
 
@@ -73,30 +73,35 @@ const RealmProviderCrud = ({ children }) => {
   };
 
   const actualizarLectura = ({ id, ...restoLectura }) => {
-    const objetoLectura = useObject(Lecturas, id);
+    const objetoLectura = obtenerLectura(id);
 
     if (objetoLectura) {
-      realm.write(() => restoLectura);
-      const lecturasPorNivel = obtenerPorNivel(objetoLectura.nivel);
-      const indiceDeLectura = lecturasPorNivel.findIndex((el) => el._id === id);
-      lecturasPorNivel[indiceDeLectura] = objetoLectura;
-      cache.set(objetoLectura.nivel, JSON.stringify(lecturasPorNivel));
+      realm.write(() => {
+        objetoLectura.titulo = restoLectura.titulo;
+        objetoLectura.lectura = restoLectura.lectura;
+        objetoLectura.nivel = restoLectura.nivel;
+      });
+
+      // restablecemos el cache
+      cache.clear();
+
       return true;
     }
     return false;
   };
 
   const eliminarLectura = (lectura) => {
-    try {
+    const objetoLectura = obtenerLectura(lectura._id);
+    let eliminado = false;
+    if (objetoLectura) {
       realm.write(() => {
-        realm.delete(lectura);
+        realm.delete(objetoLectura);
       });
-      // TODO: eliminar lectura en la cache
-      cache.delete(lectura._id);
-      return true;
-    } catch (error) {
-      return false;
+      // limpiamos la cache
+      cache.clear();
+      eliminado = true;
     }
+    return eliminado;
   };
 
   const cargarDatosIniciales = () => {

@@ -5,38 +5,36 @@ import { Tema } from "../../constantes";
 import BotonAgregarLectura from "./BotonAgregarLectura";
 import TextoCargando from "../carga/TextoCargando";
 import InputModalAgregarLectura from "./InputModalAgregarLectura";
+import { CambiosProvider } from "../../datos/CambiosContext";
 
 const ConfiguracionTarjetas = () => {
   const refModalAgregarLectura = useRef(null);
   const [cargando, setCargando] = useState(true);
-  const [hayCambio, setHayCambio] = useState(true);
 
   useEffect(() => {
     setCargando(false);
   }, []);
 
-  const handleRefrescar = () => {
-    setHayCambio((prev) => !prev);
-  };
   const handleOnPressAgregarLectura = () => {
     refModalAgregarLectura.current.open();
   };
 
   return (
-    <View style={styles.contenedor}>
-      {cargando ? <TextoCargando /> : (
-        <ScrollView>
-          <TarjetaNivel existeCambio={hayCambio} nivel={1} />
-          <TarjetaNivel existeCambio={hayCambio} nivel={2} />
-          <TarjetaNivel existeCambio={hayCambio} nivel={3} />
-        </ScrollView>
-      )}
-      <BotonAgregarLectura onPress={handleOnPressAgregarLectura} />
-      <InputModalAgregarLectura
-        refrescar={handleRefrescar}
-        reference={refModalAgregarLectura}
-      />
-    </View>
+    <CambiosProvider>
+      <View style={styles.contenedor}>
+        {cargando ? <TextoCargando /> : (
+          <ScrollView>
+            <TarjetaNivel nivel={1} />
+            <TarjetaNivel nivel={2} />
+            <TarjetaNivel nivel={3} />
+          </ScrollView>
+        )}
+        <BotonAgregarLectura onPress={handleOnPressAgregarLectura} />
+        <InputModalAgregarLectura
+          reference={refModalAgregarLectura}
+        />
+      </View>
+    </CambiosProvider>
   );
 };
 
