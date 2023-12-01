@@ -1,4 +1,5 @@
 const Tema = {
+  borderRadiusSmall: 10,
   borderRadius: 20,
   marginSmall: 5,
   margin: 10,
@@ -46,4 +47,4 @@ const FuentesTexto = {
   },
 };
 
-export { Tema, FuentesTexto, IconoSize };
+export { FuentesTexto, IconoSize, Tema };

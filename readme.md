@@ -4,8 +4,8 @@
 - [x] Terminar el diseño de la ruta de inicio
 - [x] Dar funcionalidad al boton de agregar una tarjeta
 - [x] Guardar estado del modal en caso de no guardar la lectura
-- [ ] Dar funcionalidad al boton de editar tarjeta usando el mismo modal
-- [ ] Dar funcionalidad al boton de eliminar tarjeta
+- [x] Dar funcionalidad al boton de editar tarjeta usando el mismo modal
+- [x] Dar funcionalidad al boton de eliminar tarjeta
 - [x] Refactorizar el componente `InicioMicrofono.jsx`
 - [x] Crear un nuevo contexto para la ruta microfono que nos permita manejar la
       lectura actual
@@ -20,10 +20,16 @@
       posible
 - [x] Solucionar el bug del microfono que se muestra apagado cuando esta
       encendido
-- [ ] Mejorar la interfaz de resultados
+- [x] Mejorar la interfaz de resultados
 - [x] Agregar botones de siguiente leccion y repetir
 - [x] Agregar boton de reiniciar lectura
 - [ ] Implementar un scroll automatico a medida que vaya leyendo.
+
+- [x] Hacer una validacion del cache cuando se actualiza el nivel, genera un bug
+- [ ] Bug, no se actualiza al instante cuando se guarda la edicion de una
+      lectura
+- [ ] Bug, al eliminar sigue mostrando el nombre de la lectura aunque haya sido
+      eliminada
 
 ## OBJETIVOS ESPECIFICOS
 
