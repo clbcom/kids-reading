@@ -7,7 +7,7 @@ import { useRealmCrud } from "../../datos/RealmContext";
 import CheckBoxContenedor from "../inputs/CheckBoxContenedor";
 import { useCambio } from "../../datos/CambiosContext";
 
-const InputModalEditarLectura = ({ datosLectura, reference }) => {
+const InputModalEditarLectura = ({onSave, datosLectura, reference }) => {
   const [titulo, setTitulo] = useState("");
   const [lectura, setLectura] = useState("");
   const [nivel, setNivel] = useState(datosLectura.nivel);
@@ -34,10 +34,6 @@ const InputModalEditarLectura = ({ datosLectura, reference }) => {
     setNivel(valor);
   };
 
-  const limpiarInputs = () => {
-    setTitulo("");
-    setLectura("");
-  };
   const handleOnPressGuardar = () => {
     if (titulo.length === 0) return;
     if (lectura.length === 0) return;
@@ -50,8 +46,8 @@ const InputModalEditarLectura = ({ datosLectura, reference }) => {
     };
 
     actualizarLectura(lecturaEditada);
-    limpiarInputs();
     refrescar && refrescar();
+    onSave && onSave(lecturaEditada)
     reference.current.close();
   };
 
