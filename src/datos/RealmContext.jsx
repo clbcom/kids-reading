@@ -93,13 +93,16 @@ const RealmProviderCrud = ({ children }) => {
   const eliminarLectura = (lectura) => {
     const objetoLectura = obtenerLectura(lectura._id);
     let eliminado = false;
-    if (objetoLectura) {
-      realm.write(() => {
-        realm.delete(objetoLectura);
-      });
-      // limpiamos la cache
-      cache.clear();
-      eliminado = true;
+    try {
+      if (objetoLectura) {
+        realm.write(() => {
+          realm.delete(objetoLectura);
+        });
+        // limpiamos la cache
+        cache.clear();
+        eliminado = true;
+      }
+    } catch (error) {
     }
     return eliminado;
   };

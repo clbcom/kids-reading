@@ -6,9 +6,15 @@ import InputModalEditarLectura from "./InputModalEditarLectura";
 import InputModalEliminarLectura from "./InputModalEliminarLectura";
 
 const TarjetaLeccion = ({ datos }) => {
-  const [leccion] = useState(datos);
+  const [leccion, setLeccion] = useState(datos);
   const refModalEditarLectura = useRef(null);
   const refModalEliminarLectura = useRef(null);
+
+  const handleOnSave = (datosEditados) => {
+    setLeccion({ ...datosEditados });
+    console.log("haber aqui");
+    console.log(datosEditados)
+  };
 
   return (
     <View style={styles.contenedor}>
@@ -29,7 +35,8 @@ const TarjetaLeccion = ({ datos }) => {
                 : styles.boton__no__editable__icono,
             ]}
             name="pencil"
-            onPress={() => refModalEditarLectura.current.open()}
+            onPress={() =>
+              datos.editable && refModalEditarLectura.current.open()}
           />
           <BotonConIcono
             style={[
@@ -45,11 +52,13 @@ const TarjetaLeccion = ({ datos }) => {
                 : styles.boton__no__editable__icono,
             ]}
             name="trash-bin"
-            onPress={() => refModalEliminarLectura.current.open()}
+            onPress={() =>
+              datos.editable && refModalEliminarLectura.current.open()}
           />
         </>
       </View>
       <InputModalEditarLectura
+        onSave={handleOnSave}
         datosLectura={datos}
         reference={refModalEditarLectura}
       />
